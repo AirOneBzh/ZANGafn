@@ -14,7 +14,7 @@ typedef struct{
   int t[MAX];//pos 0=nb trans; {etat1;etiquette;etat2}
   int i[MAX];//même que q
   int f[MAX];//même que q
-}Automate;
+}Automate; 
 
 typedef struct{
   int qb[MAX][MAX];
