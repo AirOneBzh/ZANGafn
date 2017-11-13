@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "fonction.h"
 
 void emonder(Automate *A){
   int i,j;
