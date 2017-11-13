@@ -1,12 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>                //pour ajouter/enlever un etat {n(=cardinal de l'ensemble, postion 1= bool, position 2 = bool, ....}
-#DEFINE  MAX 50
+#define  MAX 50
 #include <ensemble.h>
-
-
-
-
 
 typedef struct{
   int q[MAX];//pos 0=nb d'états;1 si présent état i pos i;0 sinon
@@ -17,9 +13,9 @@ typedef struct{
 }Automate;
 
 typedef struct{
-  int qb[MAX][MAX];
-  char ab[MAX];
-  int tb[MAX][MAX];//{pos etiq;etat1;etat2;etat3;etiquette;etat1';....}
-  int ib[MAX][MAX];
-  int fb[MAX][MAX];
+  int qd[MAX][MAX];
+  char ad[MAX];
+  int td[MAX][MAX];//{pos etiq;etat1;etat2;etat3;etiquette;etat1';....}
+  int id[MAX][MAX];
+  int fd[MAX][MAX];
 }Automate_d;
