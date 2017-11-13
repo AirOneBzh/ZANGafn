@@ -15,7 +15,7 @@ typedef struct{
 typedef struct{
   int qd[MAX][MAX];
   char ad[MAX];
-  int td[MAX][MAX];//{pos etiq;etat1;etat2;etat3;etiquette;etat1';....}
-  int id[MAX][MAX];
-  int fd[MAX][MAX];
+  int td[MAX][MAX];//{etiq;etat1;etat2;etat3;-1;etat1';....}
+  int id[MAX];
+  int fd[MAX][MAX];//colonne = ensemble
 }Automate_d;
