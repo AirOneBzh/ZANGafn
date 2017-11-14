@@ -22,3 +22,21 @@ void emonder(Automate *A){
     }
   }
 }
+//##################################################################//
+//return trans d'un ens par etiquette
+int trans(Automate *A, int *etat, char c){
+  int i,j;
+  int result[MAX];
+  result[0]=etat[0];
+  for(i=1; i<=etat[0]; i++){
+    result[i]=0;
+    if(etat[i]==1){
+      for(j=2; j<=A->t[0]; j+=3){
+        if(A->t[j]==c && i==A->t[j-1]){
+          result[A->t[j+1]]=1;
+        }
+      }
+    }
+  }
+  return result;
+}
