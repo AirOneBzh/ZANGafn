@@ -2,15 +2,17 @@
 #include <stdio.h>
 #define MAX 50
 
+typedef int ensemble[MAX];
+
 typedef struct{
-  int qd[MAX][MAX];
+  ensemble qd[MAX];
   char ad[MAX];
-  int td[MAX][MAX];//{pos etiq;etat1;etat2;etat3;etiquette;etat1';....}
-  int id[MAX];
-  int fd[MAX][MAX];
+  ensemble td[MAX];//{pos etiq;etat1;etat2;etat3;etiquette;etat1';....}
+  ensemble id;
+  ensemble fd[MAX];
 }Automate_d;
 
-void aff_ens_etat(int *e){
+void aff_ens_etat(ensemble e){
   int i;
   int acc=0;
   printf("{");
@@ -24,28 +26,7 @@ void aff_ens_etat(int *e){
 }
 
 int aff_det_term(Automate_d a){
-  int i,j,ne;
-  ne=a.qd[0][1];
-  printf("Q = {");
-  for(i=1;i<=ne;i++){
-    aff_ens_etat(a.qd[i]);
-  }
-  printf(" }\nI = {");
-  for(i=1;i<=ne;i++){
-    if(a.id[i]==1){
-      printf(" %d",i);
-    }
-  }
-  printf("}\nF= {");
-  for(i=1;i<=a.fd[0][0];i++){
-    for(j=1;j<=a.fd[i][0];j++){
-      if(a.fd[i][j]==1){
-        printf(" %d",j);
-      }
-      printf("\n");
-    }
-    printf("}");
-  }
+
   return 1;
 }
 
