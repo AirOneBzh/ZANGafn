@@ -10,38 +10,41 @@ typedef struct{
   int fd[MAX][MAX];
 }Automate_d;
 
+void aff_ens_etat(int *e){
+  int i;
+  int acc=0;
+  printf("{");
+  for (i=1;acc<e[0];i++){
+    if(e[i]==1){
+      printf(" %d",i);
+      acc++;
+    }
+  }
+  printf(" };");
+}
 
 int aff_det_term(Automate_d a){
-  int i,j,ne,ni;
+  int i,j,ne;
   ne=a.qd[0][1];
   printf("Q = {");
   for(i=1;i<=ne;i++){
-    printf("{");
-    ni=a.qd[i][0];
-    for(j=1;j<=ni;j++){
-      printf(" %d",i);
-    }
-    printf("}\n");
+    aff_ens_etat(a.qd[i]);
   }
   printf(" }\nI = {");
-  for(i=1;i<=a.id[0];i++){
+  for(i=1;i<=ne;i++){
     if(a.id[i]==1){
       printf(" %d",i);
     }
-    else{
-      printf("  ");
-    }
   }
-  printf(" }\nF= {");
+  printf("}\nF= {");
   for(i=1;i<=a.fd[0][0];i++){
     for(j=1;j<=a.fd[i][0];j++){
       if(a.fd[i][j]==1){
         printf(" %d",j);
       }
-      else{printf("  ");}
       printf("\n");
     }
-
+    printf("}");
   }
   return 1;
 }
@@ -49,11 +52,10 @@ int aff_det_term(Automate_d a){
 
 int main (){
   Automate_d a;
-  int i;
 // etats
   a.qd[0][0]=7;
   a.qd[0][1]=4;
-    
+
   a.qd[1][0]=2;
   a.qd[1][1]=a.qd[1][3]=1;
 

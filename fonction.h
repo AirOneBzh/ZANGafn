@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <limits.h>                //pour ajouter/enlever un etat {n(=cardinal de l'ensemble, postion 1= bool, position 2 = bool, ....}
 #define  MAX 50
-#include <ensemble.h>
 
 typedef struct{
   int q[MAX];//pos 0=nb d'états;1 si présent état i pos i;0 sinon

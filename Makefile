@@ -11,7 +11,7 @@ afficheur: afficheur.o fonction.o
 afficheur.o: afficheur.c
 	$(CC) -c afficheur.c $(CFLAGS)
 
-fonction.o: focntion.c fonction.h
+fonction.o: fonction.c fonction.h
 	$(CC) -c fonction.c $(CFLAGS)
 
 
