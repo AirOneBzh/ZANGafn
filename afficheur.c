@@ -2,7 +2,9 @@
 #include <stdio.h>
 #define MAX 50
 
-typedef int ensemble[MAX];
+typedef struct{
+  int ens[MAX];
+} ensemble;
 
 typedef struct{
   ensemble qd[MAX];
@@ -16,8 +18,8 @@ void aff_ens_etat(ensemble e){
   int i;
   int acc=0;
   printf("{");
-  for (i=1;acc<e[0];i++){
-    if(e[i]==1){
+  for (i=1;acc<e.ens[0];i++){
+    if(e.ens[i]==1){
       printf(" %d",i);
       acc++;
     }
@@ -26,6 +28,19 @@ void aff_ens_etat(ensemble e){
 }
 
 int aff_det_term(Automate_d a){
+  int i;
+  printf("Q = {");
+  for(i=1;i<=a.qd[0].ens[1];i++){
+    aff_ens_etat(a.qd[i]);
+  }
+  printf("}\nI={");
+  aff_ens_etat(a.id);
+  printf("}\nQ={");
+  for(i=1;i<=a.fd[0].ens[0];i++){
+    aff_ens_etat(a.fd[i]);
+  }
+  printf("}\n");
+
 
   return 1;
 }
@@ -34,29 +49,24 @@ int aff_det_term(Automate_d a){
 int main (){
   Automate_d a;
 // etats
-  a.qd[0][0]=7;
-  a.qd[0][1]=4;
+  a.qd[0].ens[0]=7;
+  a.qd[0].ens[1]=4;
 
-  a.qd[1][0]=2;
-  a.qd[1][1]=a.qd[1][3]=1;
+  a.qd[1].ens[0]=2;
+  a.qd[1].ens[1]=a.qd[1].ens[3]=1;
+  a.qd[2].ens[0]=2;
+  a.qd[2].ens[1]=a.qd[2].ens[2]=1;
+  a.qd[3].ens[0]=3;
+  a.qd[3].ens[4]=a.qd[3].ens[5]=a.qd[3].ens[7]=1;
+  a.qd[4].ens[0]=2;
+  a.qd[4].ens[6]=a.qd[4].ens[7]=1;
 
-  a.qd[2][0]=2;
-  a.qd[2][1]=a.qd[2][2]=1;
+  a.id=a.qd[1];
 
-  a.qd[3][0]=3;
-  a.qd[3][4]=a.qd[3][5]=a.qd[3][7]=1;
+  a.fd[0].ens[0]=2;
+  a.fd[1]=a.qd[3];
+  a.fd[2]=a.qd[4];
 
-  a.qd[4][0]=2;
-  a.qd[4][6]=a.qd[4][7]=1;
-// initiaux
-  a.id[0]=2;
-  a.id[1]=a.id[3]=1;
-//finaux
-  a.fd[0][0]=2;
-  a.fd[1][4]=a.fd[1][5]=a.fd[1][7]=1;
-
-  a.fd[2][0]=2;
-  a.fd[2][6]=a.fd[2][7]=1;
 
   aff_det_term(a);
   return 1;
