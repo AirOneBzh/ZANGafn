@@ -15,7 +15,7 @@ void emonder(Automate *A){
         }
       }
       if(acc==A->t[0]){
-        A->q[i]=0;      
+        A->q[i]=0;
         A->i[i]=0;
         A->f[i]=0;
       }
@@ -37,4 +37,12 @@ void trans(Automate *A, int *etat, char c,int result[MAX]){
       }
     }
   }
+}
+
+// ajouter transition etat / initial /final
+int aj_trans(Automate_d *A,ensemble dep,char e,ensemble arr){
+  A->td[A->td[0].ens[0]*2+1]=dep;
+  A->td[A->td[0].ens[0]*2+2]=arr;
+  A->td[0].ens[A->td[0].ens[0]+1]=e;
+  A->td[0].ens[0]++;
 }
