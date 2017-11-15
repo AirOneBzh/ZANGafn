@@ -4,6 +4,11 @@
 #define  MAX 50
 
 typedef struct{
+  int ens[MAX];
+} ensemble;
+
+
+typedef struct{
   int q[MAX];//pos 0=nb d'états;1 si présent état i pos i;0 sinon
   char a[MAX];
   int t[MAX];//pos 0=nb trans; {etat1;etiquette;etat2}
@@ -12,9 +17,11 @@ typedef struct{
 }Automate;
 
 typedef struct{
-  int qd[MAX][MAX];
+  ensemble qd[MAX];
   char ad[MAX];
-  int td[MAX][MAX];//{etiq;etat1;etat2;etat3;-1;etat1';....}
-  int id[MAX];
-  int fd[MAX][MAX];//colonne = ensemble
+  ensemble td[MAX];//{etiq;etat1;etat2;etat3;-1;etat1';....}
+  ensemble id;
+  ensemble fd[MAX];//colonne = ensemble
 }Automate_d;
+
+int eg_ens(ensemble ens1,ensemble ens2);

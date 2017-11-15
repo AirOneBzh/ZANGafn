@@ -1,18 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include "fonction.h"
 #define MAX 50
-
-typedef struct{
-  int ens[MAX];
-} ensemble;
-
-typedef struct{
-  ensemble qd[MAX];
-  char ad[MAX];
-  ensemble td[MAX];//{pos etiq;etat1;etat2;etat3;etiquette;etat1';....}
-  ensemble id;
-  ensemble fd[MAX];
-}Automate_d;
 
 void aff_ens_etat(ensemble e){
   int i;
@@ -67,7 +56,8 @@ int main (){
   a.fd[1]=a.qd[3];
   a.fd[2]=a.qd[4];
 
-
   aff_det_term(a);
+
+  printf("eg%d\n",eg_ens(a.fd[1],a.qd[2]));
   return 1;
 }
