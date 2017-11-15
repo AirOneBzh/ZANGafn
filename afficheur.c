@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "fonction.h"
+#include "ensemble.h"
 #define MAX 50
 
 void aff_ens_etat(ensemble e){

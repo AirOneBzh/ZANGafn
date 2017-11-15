@@ -3,6 +3,7 @@
 #include "fonction.h"
 
 
+
 void emonder(Automate *A){
   int i,j;
   int acc=0;
@@ -24,22 +25,8 @@ void emonder(Automate *A){
   }
 }
 //##################################################################//
-int eg_ens(ensemble ens1,ensemble ens2){
-  int i,j;
-  j=0;
-  if(ens1.ens[0]==ens2.ens[0]){
-    for(i=0;j<ens1.ens[0];i++){
-      if (ens1.ens[i]==1){
-        j++;
-      }
-    }
-    if(j==ens1.ens[0]){
-      return 1;
-    }
-  }
-  return 0;
-}
-  //return trans d'un ens par etiquette
+
+  //return trans d'un ens par etiquette sur afn
   void trans(Automate *A, int *etat, char c,int result[MAX]){
     int i,j;
     result[0]=etat[0];
@@ -54,7 +41,7 @@ int eg_ens(ensemble ens1,ensemble ens2){
       }
     }
   }
-
+// trans mais sur afd
   ensemble trans_d(Automate_d *A, ensemble ens_dep, char etiq){
     int i;
     ensemble e;
