@@ -56,7 +56,7 @@ int main (){
   a.fd[0].ens[0]=2;
   a.fd[1]=a.qd[3];
   a.fd[2]=a.qd[4];
-
+  
   aff_det_term(a);
 
   printf("eg%d\n",eg_ens(a.fd[1],a.qd[2]));

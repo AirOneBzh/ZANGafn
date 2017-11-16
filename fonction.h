@@ -18,7 +18,7 @@ typedef struct{
 
 typedef struct{
   ensemble qd[MAX];
-  char ad[MAX];
+  char a[MAX];
   ensemble td[MAX];//{etiq;etat1;etat2;etat3;-1;etat1';....}
   ensemble id;
   ensemble fd[MAX];//colonne = ensemble
