@@ -57,15 +57,6 @@ ensemble trans_d(Automate_d *A, ensemble ens_dep, char etiq){
   return e;
 }
 
-int est_etat(ensemble qd[],ensemble e){
-  int i;
-  for(i=0;i<qd[0];i++){
-    if (qd[i]==e){
-      return 1;
-    }
-  }
-  return 0;
-}
 
 int est_trans(ensemble td[],ensemble e1,char etiq,ensemble e2){
   int i;
@@ -94,25 +85,4 @@ int aj_trans(Automate_d *A,ensemble ens_dep,char etiq,ensemble ens_arr){
     }
 
   return 0;   //aucune transition ajoutée
-}
-
-int aj_etat(ensemble e,int n){
-  if(is_etat(e,n)){
-    return 0;
-  }
-  else{
-    e.ens[n]=1;
-    e.ens[0]+=1;
-    return 1;
-  }
-}
-
-int aj_ens(Automate_d A,ensemble e){
-  if(is_ens(A,e)){
-    return 0;
-  }
-  else{
-    A.qd[0].ens[0]+=1;
-    a.qd[A.qd[0].ens[0]]=e;
-  }
 }
