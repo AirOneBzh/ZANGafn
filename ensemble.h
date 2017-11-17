@@ -1,8 +1,10 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 50
+
 typedef struct{
   int ens[MAX];
-} ensemble;
-
+}ensemble;
+int est_ens(ensemble q[],ensemble e);
+int est_etat(ensemble e,int n);
 int eg_ens(ensemble ens1,ensemble ens2);
-int aj_ens(Automate_d A,ensemble e);
-int aj_etat(ensemble e,int n);
-int est_etat(ensemble qd[],ensemble e);
