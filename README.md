@@ -6,10 +6,10 @@ note \_d est destiné à l'automate deterministe
 
 # Module ensemble
 ## Fonctions
-<details><summary>eg_ens</summary><p>
+<details><summary>eg_ens</summary>
 ```int eg_ens(ensemble ens1,ensemble ens2)
 ```
-</p></details>
+</details>
 est_ens  
 est_etat  
 aj_ens  
