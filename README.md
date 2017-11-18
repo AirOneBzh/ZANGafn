@@ -147,6 +147,7 @@ int init_aut(Automate *A)
 * Propose à l'utilisateur le choix de la configuration de l'automate
 
 ##### det_aut  
+*dernière des fonctions à écrire*
 ```
 int det_aut(Automate A,Automate *B)
 ```
@@ -179,7 +180,8 @@ typedef struct{
 
 
 # Prog afficheur
-
+à changer pour en faire un module  
+et faire un menu de choix pour manipuler l'automate
 ##### aff_ens
 ```
 void aff_ens(ensemble e)
