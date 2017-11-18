@@ -92,18 +92,15 @@ int A_saisie(){
   return 1;
 }
 
-int init_automate(Automate *A){
+int init_aut(Automate *A){
   int x;
-
   fprintf(stdout,"Quel type de saisie voulez vous?\n1- Automate de base (par defaut)\n2- Lecture par fichier\n3- Saisie manuelle (bon chance)\n");
   fscanf(stdin,"%d",&x);
   if(x==2){
     while(A_fichier(A)==0);
     return 2;
   }
-
   if(x==3){
-
     return 3;
   }
   A_defaut(A);

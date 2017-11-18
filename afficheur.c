@@ -69,7 +69,7 @@ int aff_aut(Automate A){
 
 int main (){
   Automate a;
-  init_automate(&a);
+  init_aut(&a);
   aff_aut(a);
   return 1;
 }

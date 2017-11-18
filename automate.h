@@ -17,5 +17,5 @@ typedef struct{
   ensemble fd[MAX];//colonne = ensemble
 }Automate_d;
 
-int init_automate(Automate *A);
+int init_aut(Automate *A);
 void A_defaut(Automate *A);
