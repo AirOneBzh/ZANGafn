@@ -66,7 +66,7 @@ int aj_trans(int \*t,int etat_dep,char etiq,int etat_arr)
 </code>
 * 1 si la transition a pu être ajoutée
 
-= = =
+-----------
 
 ##### Automate déterministes
 
