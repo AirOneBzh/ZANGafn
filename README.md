@@ -68,9 +68,9 @@ int aj_trans(int \*t,int etat_dep,char etiq,int etat_arr)
 
 = = =
 
-#### Automate déterministes
+##### Automate déterministes
 
-##### trans_d
+###### trans_d
 <code>
 ensemble trans_d(Automate_d A, ensemble ens_dep, char etiq)
 </code>
