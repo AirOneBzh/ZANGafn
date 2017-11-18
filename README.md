@@ -6,6 +6,7 @@ note \_d est destiné à l'automate deterministe
 
 # Module ensemble
 ## Fonctions
+###
 ##### eg_ens
 <code>
 int eg_ens(ensemble ens1,ensemble ens2)
