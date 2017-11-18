@@ -9,9 +9,9 @@ note \_d est destiné à l'automate deterministe
 <details><summary>eg_ens</summary>
 
 <code>
-int eg_ens(ensemble ens1,ensemble ens2)
-</code>  
-Renvoi
+int eg_ens(ensemble ens1,ensemble ens2)  
+</code>
+  Renvoi
 * 1 si ens1 = ens2  
 * 0 sinon
 </details>
