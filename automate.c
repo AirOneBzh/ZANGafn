@@ -87,7 +87,7 @@ int A_fichier(Automate *A){
   return 1;
 }
 
-int A_saisie(){
+int A_saisie(Automate *A){
   printf("Saisie");
   return 1;
 }

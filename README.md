@@ -67,9 +67,7 @@ int aj_trans(int \*t,int etat_dep,char etiq,int etat_arr)
 </code>
 * 1 si la transition a pu être ajoutée
 
------------
 
-#### Automate déterministes
 
 ##### trans_d
 <code>
@@ -97,23 +95,100 @@ int aj_trans_d(ensemble \*td[],ensemble ens_dep,char etiq,ensemble ens_arr)
 
 
 ## Structure
-ensemble
+##### ensemble
+<code>
+typedef struct {  
+  int ens[50];  
+}
+</code>
 
 # Module automate
 ## Fonctions
-A_defaut  
-A_fichier  
-A_saisie  
-init_aut--omate--  à modif dans fichiers  
-det_aut  
+
+##### A_defaut
+<code>
+void A_defaut(Automate \*A)
+</code>
+* Insère l'automate de test par défaut dans A
+
+##### A_fichier
+<code>
+int A_fichier(Automate \*A)
+</code>
+* Insère l'automate configuré dans le fichier loader dans A
+
+##### A_saisie
+<code>
+int A_saisie(Automate \*A)
+</code>
+* Demande information par information les données à insérer dans l'automate A
+
+##### init_aut
+<code>
+int init_aut(Automate \*A)
+</code>
+* Propose à l'utilisateur le choix de la configuration de l'automate
+
+##### det_aut  
+<code>
+int det_aut(Automate A,Automate \*B)
+</code>
+* Modifie l'automate B pour qu'il soit l'automate A determinisé
 
 ## Structures
-Automate  
-Automate_d  
+
+##### Automate
+<code>
+typedef struct{  
+  ensemble q;  
+  char a[50];  
+  int t[50];  
+  ensemble i;  
+  ensemble f;  
+}Automate;  
+</code>
+
+##### Automate_d  
+<code>
+typedef struct{  
+  ensemble qd[50];  
+  char a[50];  
+  ensemble td[50];  
+  ensemble id;  
+  ensemble fd[50];  
+}Automate_d;  
+</code>
+
+
 
 # Prog afficheur
-aff_ens  
-aff_trans  
-aff_aut  
-aff_trans_d  
-aff_aut_d  
+
+##### aff_ens
+<code>
+void aff_ens(ensemble e)
+</code>  
+* Affiche un ensemble d'états e
+
+##### aff_trans
+<code>
+int aff_trans(int t[])
+</code>
+* Affiche une liste de transitions d'un AFN
+
+##### aff_aut
+<code>
+int aff_aut(Automate A)
+</code>  
+* Affiche un AFN
+
+##### aff_trans_d
+<code>
+int aff_trans_d(ensemble td[])
+</code>  
+* Affiche un tableau de transition entre ensembles d'un AFD
+
+##### aff_aut_d
+<code>
+int aff_aut_d(Automate_d a)
+</code>  
+* Affiche un AFD
