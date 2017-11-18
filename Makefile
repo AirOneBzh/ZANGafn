@@ -1,5 +1,5 @@
 ##########################################################
-
+CC=gcc
 CFLAGS = -g -O2 -Wall
 
 prog: afficheur
@@ -18,7 +18,7 @@ ensemble.o:ensemble.c ensemble.h
 	$(CC) -c ensemble.c $(CFLAGS)
 
 automate.o:automate.c automate.h
-		$(CC) -c automate.c $(CFLAGS)
+	$(CC) -c automate.c $(CFLAGS)
 
 
 clean:

@@ -41,15 +41,15 @@ int aj_ens(ensemble q[],ensemble e){
 }
 
 //return trans d'un ens par etiquette sur afn
-ensemble trans(Automate A, ensemble etat, char c){
+ensemble trans(Automate A, ensemble ens_dep, char c){
   int i,j;
   ensemble res;
-  res.ens[0]=etat.ens[0];
-  for(i=1; i<=etat.ens[0]; i++){
-    if(etat.ens[i]==1){
-      for(j=2; j<=A.t.ens[0]; j+=3){
-        if(A.t.ens[j]==c && i==A.t.ens[j-1]){
-          res.ens[A.t.ens[j+1]]=1;
+  res.ens[0]=ens_dep.ens[0];
+  for(i=1; i<=ens_dep.ens[0]; i++){
+    if(ens_dep.ens[i]==1){
+      for(j=2; j<=A.t[0]; j+=3){
+        if(A.t[j]==c && i==A.t[j-1]){
+          res.ens[A.t[j+1]]=1;
         }
       }
     }
@@ -57,10 +57,10 @@ ensemble trans(Automate A, ensemble etat, char c){
   return res;
 }
 
-int est_trans(ensemble td[],ensemble e1,char etiq,ensemble e2){
+int est_trans_d(ensemble td[],ensemble ens_dep,char etiq,ensemble ens_arr){
   int i;
-  for(i=1;i<td->ens[0];i++){
-    if(eg_ens(td[i],e1) && eg_ens(td[i+1],e2) && td[0].ens[i]==etiq){
+  for(i=1;i<td[0].ens[0];i++){
+    if(eg_ens(td[i],ens_dep) && eg_ens(td[i+1],ens_arr) && td[0].ens[i]==etiq){
       return 1;
     }
   }
@@ -81,35 +81,49 @@ ensemble trans_d(Automate_d A, ensemble ens_dep, char etiq){
   return e;
 }
 
+int est_trans(int t[],int etat_dep,char etiq,int etat_arr){
+  int i;
+  for(i=0;i<t[0];i++){
+    if(etat_dep==t[i] && etiq==t[i+1] && etat_arr==t[i+2]){
+      return 1;
+    }
+  }
+  return 0;
+}
 
+int aj_trans(int *t,int etat_dep,char etiq,int etat_arr){
+  int n = t[0];
+  if(est_trans(t,etat_dep,etiq,etat_arr)){
+    return 0;
+  }
+  t[n*3+1]=etat_dep;
+  t[n*3+2]=etiq;
+  t[n*3+3]=etat_arr;
+  t[0]++;
+
+  return 1;
+}
 
 // ajouter transition etat / initial /final
-int aj_trans(Automate_d *A,ensemble ens_dep,char etiq,ensemble ens_arr){
-  int i=0,test=0;         // test -> si etiquette est dans alphabet =1 sinon =0
-  while(A->a[i]!='\0' && test==0){
-    if(A->a[i]==etiq)test=1;
-    i++;
+int aj_trans_d(ensemble *td[],ensemble ens_dep,char etiq,ensemble ens_arr){
+  if(est_trans_d(*td,ens_dep,etiq,ens_arr)){
+    return 0;   //aucune transition ajoutée
   }
-  if(est_trans(A->td,ens_dep,etiq,ens_arr))test=0;
-  if(test == 1){
-    A->td[A->td[0].ens[0]*2+1]=ens_dep;
-    A->td[A->td[0].ens[0]*2+2]=ens_arr;
-    A->td[0].ens[A->td[0].ens[0]+1]=etiq;
-    A->td[0].ens[0]++;
-    return 1;  //une trans ajoutée
-  }
-
-  return 0;   //aucune transition ajoutée
+  (*td[td[0]->ens[0]*2+1])=ens_dep;
+  (*td[td[0]->ens[0]*2+2])=ens_arr;
+  td[0]->ens[td[0]->ens[0]+1]=etiq;
+  td[0]->ens[0]++;
+  return 1;  //une trans ajoutée
 }
 
 //ajout supp d'un état dans un ensemble
 // mettre q i ou f pour un état normal initial ou final
-int aj_etat(ensemble e,int n){
-  if(est_etat(e,n)){
+int aj_etat(ensemble *e,int n){
+  if(est_etat(*e,n)){
     return 0;
   }
-  e.ens[0]+=1;
-  e.ens[n]=1;
+  e->ens[0]++;
+  e->ens[n]=1;
   return 1;
 }
 

@@ -1,0 +1,23 @@
+Q3:
+1 2 3
+a2:
+a b
+t6:
+1a1 1a2 1b1 2b3 3a3 3b3
+i1:
+1
+f1:
+3
+EOF
+
+Qn:     avec n le nombre d'états
+q1 q2 q3      la liste des états
+an:     ---------------- d'éléments dans l'alphabet
+a b c         -------- de l'alphabet
+tn:       -------------- de transitions
+1a1 1b2       -------- des transitions de la forme qxd   ou q est etat depart, x etiquette, d etat arrivée
+in:     ---------------- d'éléments initaux
+1             -------- des états initiaux
+fn:     ---------------- d'éléments finaux
+3             -------- des états finaux
+EOF       Pour finir la lecture

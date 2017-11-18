@@ -4,7 +4,7 @@
 typedef struct{
   ensemble q;//pos 0=nb d'états;1 si présent état i pos i;0 sinon
   char a[MAX];
-  ensemble t;//pos 0=nb trans; {etat1;etiquette;etat2}
+  int t[MAX];//pos 0=nb trans; {etat1;etiquette;etat2}
   ensemble i;//même que q
   ensemble f;//même que q
 }Automate;
