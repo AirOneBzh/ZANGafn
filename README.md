@@ -4,9 +4,11 @@ analyser un mot avec un automate/deter un automate/chq module utilise les autres
 
 note \_d est destiné à l'automate deterministe
 
-#Module ensemble
+# Module ensemble
 ## Fonctions
-eg_ens  
+<details><summary>eg_ens</summary><p>
+    int eg_ens(ensemble ens1,ensemble ens2)
+</p></details>
 est_ens  
 est_etat  
 aj_ens  
@@ -19,10 +21,10 @@ trans_d
 est_trans_d  
 aj_trans_d  
 
-##Structure
+## Structure
 ensemble
 
-#Module automate
+# Module automate
 ## Fonctions
 A_defaut  
 A_fichier  
@@ -34,7 +36,7 @@ det_aut
 Automate  
 Automate_d  
 
-#Prog afficheur
+# Prog afficheur
 aff_ens  
 aff_trans  
 aff_aut  
