@@ -38,13 +38,13 @@ int aj_ens(ensemble q[],ensemble e)
 
 ##### aj_etat
 ```
-int aj_etat(ensemble \*e,int n)
+int aj_etat(ensemble *e,int n)
 ```  
 * 1 si l'état est ajouté à l'ensemble
 
 ##### supp_etat
 ```
-int supp_etat(ensemble \*e,int n)
+int supp_etat(ensemble *e,int n)
 ```
 * 1 si un état supprimé
 * 0 sinon _(l'état pouvait être absent)_
@@ -63,7 +63,7 @@ int est_trans(int t[],int etat_dep,char etiq,int etat_arr)
 
 ##### aj_trans
 ```
-int aj_trans(int \*t,int etat_dep,char etiq,int etat_arr)
+int aj_trans(int *t,int etat_dep,char etiq,int etat_arr)
 ```
 * 1 si la transition a pu être ajoutée
 
@@ -82,7 +82,7 @@ int est_trans_d(ensemble td[],ensemble ens_dep,char etiq,ensemble ens_arr)
 
 ##### aj_trans_d
 ```
-int aj_trans_d(ensemble \*td[],ensemble ens_dep,char etiq,ensemble ens_arr)
+int aj_trans_d(ensemble *td[],ensemble ens_dep,char etiq,ensemble ens_arr)
 ```
 
 
@@ -107,31 +107,31 @@ typedef struct {
 
 ##### A_defaut
 ```
-void A_defaut(Automate \*A)
+void A_defaut(Automate *A)
 ```
 * Insère l'automate de test par défaut dans A
 
 ##### A_fichier
 ```
-int A_fichier(Automate \*A)
+int A_fichier(Automate *A)
 ```
 * Insère l'automate configuré dans le fichier loader dans A
 
 ##### A_saisie
 ```
-int A_saisie(Automate \*A)
+int A_saisie(Automate *A)
 ```
 * Demande information par information les données à insérer dans l'automate A
 
 ##### init_aut
 ```
-int init_aut(Automate \*A)
+int init_aut(Automate *A)
 ```
 * Propose à l'utilisateur le choix de la configuration de l'automate
 
 ##### det_aut  
 ```
-int det_aut(Automate A,Automate \*B)
+int det_aut(Automate A,Automate *B)
 ```
 * Modifie l'automate B pour qu'il soit l'automate A determinisé
 

@@ -63,7 +63,7 @@ int aj_etat(ensemble *e,int n){
 }
 
 int supp_etat(ensemble *e,int n){
-  if(est_etat(e,n)){
+  if(est_etat((*e),n)){
     e->ens[n]=0;
     e->ens[0]-=1;
     return 1;
