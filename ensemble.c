@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "fonction.h"
+#include "automate.h"
 
 
 //manip d'un ensemble
