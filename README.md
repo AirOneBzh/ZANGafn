@@ -12,7 +12,6 @@ int eg_ens(ensemble ens1,ensemble ens2)
 </code>
 
 * 1 si ens1 = ens2  
-* 0 sinon
 
 ##### est_ens
 
@@ -21,7 +20,6 @@ int est_ens(ensemble q[],ensemble e)
 </code>
 
 * 1 si e appartient à la liste d'ensemble q
-* 0 sinon
 
 ##### est_etat
 <code>
@@ -29,18 +27,19 @@ int est_etat(ensemble e,int n)
 </code>
 
 * 1 si l'état n fait partie de l'ensemble e
-* 0 sinon
 
 ##### aj_ens
 <code>
 int aj_ens(ensemble q[],ensemble e)
 </code>   
+* 1 si l'ensemble est ajouté la liste
+
 
 ##### aj_etat
 <code>
 int aj_etat(ensemble \*e,int n)
 </code>  
-*
+* 1 si l'état est ajouté à l'ensemble
 
 ##### supp_etat
 <code>
@@ -54,23 +53,21 @@ int supp_etat(ensemble \*e,int n)
 a revoir
 </code>
 * 1 si un état est renvoyé _(ens_arr)_
-* 0 sinon
 
 ##### est_trans
 <code>
 int est_trans(int t[],int etat_dep,char etiq,int etat_arr)
 </code>
 * 1 si la transition existe
-* 0 sinon
 
 ##### aj_trans
 <code>
 int aj_trans(int \*t,int etat_dep,char etiq,int etat_arr)
 </code>
 * 1 si la transition a pu être ajoutée
-* 0 sinon
 
-- - -
+= = =
+#### Automate déterministes
 
 ##### trans_d
 <code>
