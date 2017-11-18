@@ -3,9 +3,9 @@
 analyser un mot avec un automate/deter un automate/chq module utilise les autres  
 
 note \_d est destiné à l'automate deterministe
-
-# Module ensemble
-## Fonctions
+# Éléments du programme
+## Module ensemble
+### Fonctions
 
 ##### eg_ens
 ```
