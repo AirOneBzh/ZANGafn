@@ -11,9 +11,10 @@ note \_d est destiné à l'automate deterministe
 <code>
 int eg_ens(ensemble ens1,ensemble ens2)
 </code>
-  Renvoi
-* 1 si ens1 = ens2  
-* 0 sinon
+</br>
+Renvoi
+1 si ens1 = ens2  
+ 0 sinon
 </details>
 
 <details><summary>
