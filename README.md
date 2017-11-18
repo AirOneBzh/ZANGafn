@@ -6,7 +6,7 @@ note \_d est destiné à l'automate deterministe
 
 # Module ensemble
 ## Fonctions
-### e
+
 ##### eg_ens
 <code>
 int eg_ens(ensemble ens1,ensemble ens2)
@@ -69,9 +69,9 @@ int aj_trans(int \*t,int etat_dep,char etiq,int etat_arr)
 
 -----------
 
-##### Automate déterministes
+#### Automate déterministes
 
-###### trans_d
+##### trans_d
 <code>
 ensemble trans_d(Automate_d A, ensemble ens_dep, char etiq)
 </code>
