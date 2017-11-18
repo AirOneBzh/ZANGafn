@@ -149,7 +149,7 @@ typedef struct{
 </code>
 
 ##### Automate_d  
-<code>
+```
 typedef struct{  
   ensemble qd[50];  
   char a[50];  
@@ -157,7 +157,7 @@ typedef struct{
   ensemble id;  
   ensemble fd[50];  
 }Automate_d;  
-</code>
+```
 
 
 
