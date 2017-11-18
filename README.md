@@ -7,11 +7,25 @@ note \_d est destiné à l'automate deterministe
 # Module ensemble
 ## Fonctions
 <details><summary>eg_ens</summary>
+
 ```
 int eg_ens(ensemble ens1,ensemble ens2)
-```
+```  
+Renvoi
+* 1 si ens1 = ens2  
+* 0 sinon
 </details>
-est_ens  
+
+<details><summary>
+est_ens
+</summary>
+
+```
+int est_ens(ensemble q[],ensemble e)
+```  
+Renvoi 1 si e appartient à la liste d'ensemble q
+</details>
+
 est_etat  
 aj_ens  
 aj_etat  
