@@ -4,7 +4,7 @@
 
 #define MAX 50
 
-void aff_ens_etat(ensemble e){
+void aff_ens(ensemble e){
   int i;
   int acc=0;
   fprintf(stdout," {");
@@ -17,7 +17,7 @@ void aff_ens_etat(ensemble e){
   fprintf(stdout," }\n");
 }
 
-int aff_tab_trans(int t[]){
+int aff_trans(int t[]){
   int i;
   fprintf(stdout," { ");
   for(i=0;i<t[0];i++){
@@ -29,17 +29,17 @@ int aff_tab_trans(int t[]){
 
 int aff_trans_d();
 
-int aff_det_term(Automate_d a){
+int aff_aut_d(Automate_d a){
   int i;
   fprintf(stdout,"Q = {");
   for(i=1;i<=a.qd[0].ens[1];i++){
-    aff_ens_etat(a.qd[i]);
+    aff_ens(a.qd[i]);
   }
   fprintf(stdout,"}I={");
-  aff_ens_etat(a.id);
+  aff_ens(a.id);
   fprintf(stdout,"}Q={");
   for(i=1;i<=a.fd[0].ens[0];i++){
-    aff_ens_etat(a.fd[i]);
+    aff_ens(a.fd[i]);
   }
   fprintf(stdout,"}\n");
 
@@ -48,20 +48,20 @@ int aff_det_term(Automate_d a){
 }
 
 //affiche un automate dans le terminal
-int aff_aut_term(Automate A){
+int aff_aut(Automate A){
   int i;
   fprintf(stdout,"Q=");
-  aff_ens_etat(A.q);
+  aff_ens(A.q);
   fprintf(stdout,"A= { ");
   for(i=1;i<=A.a[0];i++){
     fprintf(stdout,"%c ",A.a[i]);
   }
   fprintf(stdout,"}\nT=");
-  aff_tab_trans(A.t);
+  aff_trans(A.t);
   fprintf(stdout,"I=");
-  aff_ens_etat(A.i);
+  aff_ens(A.i);
   fprintf(stdout,"F=");
-  aff_ens_etat(A.f);
+  aff_ens(A.f);
   printf("\n");
 
   return 1;
@@ -70,9 +70,9 @@ int aff_aut_term(Automate A){
 int main (){
   Automate a;
   init_automate(&a);
-  aff_aut_term(a);
+  aff_aut(a);
   return 1;
 }
 
-//init d'un automate par défaut uniquement avec affichage
+//init d'un automate par défaut et avec lecture de fichier avec affichage
 // a faire affichage de ses transitions

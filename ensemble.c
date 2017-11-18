@@ -4,6 +4,7 @@
 
 
 //manip d'un ensemble
+// égalité entre deux ensemble
 int eg_ens(ensemble ens1,ensemble ens2){
   int i,j;
   j=0;
@@ -22,11 +23,20 @@ int eg_ens(ensemble ens1,ensemble ens2){
 
 //verif si ens e est dans liste ensembles q
 int est_ens(ensemble q[],ensemble e){
-  return 1;
+  int i;
+  for(i=0;i<q[0].ens[0];i++){
+    if(eg_ens(q[i],e)){
+      return 1;
+    }
+  }
+  return 0;
 }
 
-//verif si n est un état dans ensemble e 1 oui 2 non
+//verif si n est un état dans ensemble e 1 oui 0 non
 int est_etat(ensemble e,int n){
+  if(e.ens[n]==1){
+    return 1;
+  }
   return 0;
 }
 
@@ -39,6 +49,36 @@ int aj_ens(ensemble q[],ensemble e){
   q[q[0].ens[0]]=e;
   return 1;
 }
+
+
+//ajout supp d'un état dans un ensemble
+// mettre q i ou f pour un état normal initial ou final
+int aj_etat(ensemble *e,int n){
+  if(est_etat(*e,n)){
+    return 0;
+  }
+  e->ens[0]++;
+  e->ens[n]=1;
+  return 1;
+}
+
+int supp_etat(ensemble e,int n){
+  if(est_etat(e,n)){
+    e.ens[n]=0;
+    e.ens[0]-=1;
+    return 1;
+  }
+  return 0;
+}
+
+
+
+
+//
+//
+//  Manip des ensemble de transition
+//
+//
 
 //return trans d'un ens par etiquette sur afn
 ensemble trans(Automate A, ensemble ens_dep, char c){
@@ -55,30 +95,6 @@ ensemble trans(Automate A, ensemble ens_dep, char c){
     }
   }
   return res;
-}
-
-int est_trans_d(ensemble td[],ensemble ens_dep,char etiq,ensemble ens_arr){
-  int i;
-  for(i=1;i<td[0].ens[0];i++){
-    if(eg_ens(td[i],ens_dep) && eg_ens(td[i+1],ens_arr) && td[0].ens[i]==etiq){
-      return 1;
-    }
-  }
-  return 0;
-}
-
-// trans mais sur afd
-ensemble trans_d(Automate_d A, ensemble ens_dep, char etiq){
-  int i;
-  ensemble e;
-  e.ens[0]=0;
-
-  for(i=1; i<=A.td[0].ens[0]; i++){
-    if(eg_ens(A.td[i],ens_dep) && A.td[0].ens[i]==etiq){
-      return A.td[i+1];
-    }
-  }
-  return e;
 }
 
 int est_trans(int t[],int etat_dep,char etiq,int etat_arr){
@@ -104,6 +120,21 @@ int aj_trans(int *t,int etat_dep,char etiq,int etat_arr){
   return 1;
 }
 
+
+// det
+//
+//
+
+int est_trans_d(ensemble td[],ensemble ens_dep,char etiq,ensemble ens_arr){
+  int i;
+  for(i=1;i<td[0].ens[0];i++){
+    if(eg_ens(td[i],ens_dep) && eg_ens(td[i+1],ens_arr) && td[0].ens[i]==etiq){
+      return 1;
+    }
+  }
+  return 0;
+}
+
 // ajouter transition etat / initial /final
 int aj_trans_d(ensemble *td[],ensemble ens_dep,char etiq,ensemble ens_arr){
   if(est_trans_d(*td,ens_dep,etiq,ens_arr)){
@@ -116,22 +147,18 @@ int aj_trans_d(ensemble *td[],ensemble ens_dep,char etiq,ensemble ens_arr){
   return 1;  //une trans ajoutée
 }
 
-//ajout supp d'un état dans un ensemble
-// mettre q i ou f pour un état normal initial ou final
-int aj_etat(ensemble *e,int n){
-  if(est_etat(*e,n)){
-    return 0;
-  }
-  e->ens[0]++;
-  e->ens[n]=1;
-  return 1;
-}
 
-int supp_etat(ensemble e,int n){
-  if(est_etat(e,n)){
-    e.ens[n]=0;
-    e.ens[0]-=1;
-    return 1;
+
+// trans mais sur afd
+ensemble trans_d(Automate_d A, ensemble ens_dep, char etiq){
+  int i;
+  ensemble e;
+  e.ens[0]=0;
+
+  for(i=1; i<=A.td[0].ens[0]; i++){
+    if(eg_ens(A.td[i],ens_dep) && A.td[0].ens[i]==etiq){
+      return A.td[i+1];
+    }
   }
-  return 0;
+  return e;
 }

@@ -32,7 +32,7 @@ int A_fichier(Automate *A){
   char ligne[50][20],donnee[30];
   FILE *f;
   char c,etiq;
-  fprintf(stdout,"L'automate doit se trouver dans le fichier automate\nsuivant la disposition du fichier sample-automate\n");
+  fprintf(stdout,"Modifiez le fichier \"loader\" pour insérez votre automate\n");
 
   f = fopen("loader","r");
   if(f==NULL){
