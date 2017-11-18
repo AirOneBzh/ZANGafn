@@ -10,7 +10,7 @@ note \_d est destiné à l'automate deterministe
 <code>
 int eg_ens(ensemble ens1,ensemble ens2)
 </code>
-Renvoi
+
 * 1 si ens1 = ens2  
 * 0 sinon
 
@@ -20,60 +20,79 @@ Renvoi
 int est_ens(ensemble q[],ensemble e)
 </code>
 
-Renvoi 1 si e appartient à la liste d'ensemble q
+* 1 si e appartient à la liste d'ensemble q
+* 0 sinon
 
-<details><summary>
-est_etat
-</summary><code>
+##### est_etat
+<code>
 int est_etat(ensemble e,int n)
 </code>
-Renvoi
-</details>
 
-<details><summary>
-aj_ens
-</summary><code>
+* 1 si l'état n fait partie de l'ensemble e
+* 0 sinon
+
+##### aj_ens
+<code>
 int aj_ens(ensemble q[],ensemble e)
-</code></details>    
+</code>   
 
-<details><summary>
-aj_etat
-</summary><code>
+##### aj_etat
+<code>
 int aj_etat(ensemble \*e,int n)
-</code></details>   
+</code>  
+*
 
-<details><summary>supp_etat</summary>
-<code>int supp_etat(ensemble \*e,int n)</code>
-</details>  
+##### supp_etat
+<code>
+int supp_etat(ensemble \*e,int n)
+</code>
+* 1 si un état supprimé
+* 0 sinon _(l'état pouvait être absent)_
 
-<details><summary>trans</summary>
-<code>a revoir</code>
-</details>    
+##### trans
+<code>
+a revoir
+</code>
+* 1 si un état est renvoyé _(ens_arr)_
+* 0 sinon
 
-<details><summary>est_trans</summary>
-<code>int est_trans(int t[],int etat_dep,char etiq,int etat_arr)</code>
-</details>
+##### est_trans
+<code>
+int est_trans(int t[],int etat_dep,char etiq,int etat_arr)
+</code>
+* 1 si la transition existe
+* 0 sinon
 
-<details><summary>aj_trans</summary>
-<code>int aj_trans(int \*t,int etat_dep,char etiq,int etat_arr)</code>
-</details>  
+##### aj_trans
+<code>
+int aj_trans(int \*t,int etat_dep,char etiq,int etat_arr)
+</code>
+* 1 si la transition a pu être ajoutée
+* 0 sinon
 
-<details><summary>trans_d</summary>
-<code>ensemble trans_d(Automate_d A, ensemble ens_dep, char etiq)</code>
-</details>   
+- - -
 
-<details><summary>est_trans_d </summary>
-<code>int est_trans_d(ensemble td[],ensemble ens_dep,char etiq,ensemble ens_arr)</code>
-</details>   
+##### trans_d
+<code>
+ensemble trans_d(Automate_d A, ensemble ens_dep, char etiq)
+</code>
 
-<details><summary>aj_trans_d</summary>
-<code>int aj_trans_d(ensemble \*td[],ensemble ens_dep,char etiq,ensemble ens_arr)</code>
-</details>   
+##### est_trans_d
+<code>
+int est_trans_d(ensemble td[],ensemble ens_dep,char etiq,ensemble ens_arr)
+</code>
+
+
+##### aj_trans_d
+<code>
+int aj_trans_d(ensemble \*td[],ensemble ens_dep,char etiq,ensemble ens_arr)
+</code>
+
 
 <!--
-<details><summary></summary>
+#####
 <code></code>
-</details>
+
  -->
 
 
