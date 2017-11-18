@@ -62,10 +62,10 @@ int aj_etat(ensemble *e,int n){
   return 1;
 }
 
-int supp_etat(ensemble e,int n){
+int supp_etat(ensemble *e,int n){
   if(est_etat(e,n)){
-    e.ens[n]=0;
-    e.ens[0]-=1;
+    e->ens[n]=0;
+    e->ens[0]-=1;
     return 1;
   }
   return 0;
@@ -81,20 +81,19 @@ int supp_etat(ensemble e,int n){
 //
 
 //return trans d'un ens par etiquette sur afn
-ensemble trans(Automate A, ensemble ens_dep, char c){
+int trans(Automate A, ensemble ens_dep, char c,ensemble ens_arr){
   int i,j;
-  ensemble res;
-  res.ens[0]=ens_dep.ens[0];
+  ens_arr.ens[0]=ens_dep.ens[0];
   for(i=1; i<=ens_dep.ens[0]; i++){
     if(ens_dep.ens[i]==1){
       for(j=2; j<=A.t[0]; j+=3){
         if(A.t[j]==c && i==A.t[j-1]){
-          res.ens[A.t[j+1]]=1;
+          ens_arr.ens[A.t[j+1]]=1;
         }
       }
     }
   }
-  return res;
+  return 1;
 }
 
 int est_trans(int t[],int etat_dep,char etiq,int etat_arr){

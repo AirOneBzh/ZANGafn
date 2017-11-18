@@ -51,7 +51,7 @@ int supp_etat(ensemble \*e,int n)
 
 ##### trans
 <code>
-a revoir
+int trans(Automate A, ensemble ens_dep, char c,ensemble ens_arr)
 </code>
 * 1 si un état est renvoyé _(ens_arr)_
 
