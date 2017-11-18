@@ -51,19 +51,28 @@ int supp_etat(ensemble *e,int n)
 
 ##### trans
 ```
-int trans(Automate A, ensemble ens_dep, char c,ensemble ens_arr)
+int trans(Automate A,  
+          ensemble ens_dep,  
+          char c,  
+          ensemble ens_arr)  
 ```
 * 1 si un état est renvoyé _(ens_arr)_
 
 ##### est_trans
 ```
-int est_trans(int t[],int etat_dep,char etiq,int etat_arr)
+int est_trans(int t[],  
+              int etat_dep,  
+              char etiq,  
+              int etat_arr)  
 ```
 * 1 si la transition existe
 
 ##### aj_trans
 ```
-int aj_trans(int *t,int etat_dep,char etiq,int etat_arr)
+int aj_trans(int *t,  
+             int etat_dep,  
+             char etiq,  
+             int etat_arr)  
 ```
 * 1 si la transition a pu être ajoutée
 
@@ -71,18 +80,26 @@ int aj_trans(int *t,int etat_dep,char etiq,int etat_arr)
 
 ##### trans_d
 ```
-ensemble trans_d(Automate_d A, ensemble ens_dep, char etiq)
+ensemble trans_d(Automate_d A,  
+                 ensemble ens_dep,  
+                 char etiq)  
 ```
 
 ##### est_trans_d
 ```
-int est_trans_d(ensemble td[],ensemble ens_dep,char etiq,ensemble ens_arr)
+int est_trans_d(ensemble td[],  
+                ensemble ens_dep,  
+                char etiq,  
+                ensemble ens_arr)  
 ```
 
 
 ##### aj_trans_d
 ```
-int aj_trans_d(ensemble *td[],ensemble ens_dep,char etiq,ensemble ens_arr)
+int aj_trans_d(ensemble *td[],  
+               ensemble ens_dep,  
+               char etiq,  
+               ensemble ens_arr)  
 ```
 
 
