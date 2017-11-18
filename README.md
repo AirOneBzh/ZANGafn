@@ -20,9 +20,9 @@ int eg_ens(ensemble ens1,ensemble ens2)
 est_ens
 </summary>
 
-```
+<code>
 int est_ens(ensemble q[],ensemble e)
-```  
+</code>
 Renvoi 1 si e appartient à la liste d'ensemble q
 </details>
 
