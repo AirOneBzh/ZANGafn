@@ -7,7 +7,8 @@ note \_d est destiné à l'automate deterministe
 # Module ensemble
 ## Fonctions
 <details><summary>eg_ens</summary><p>
-    int eg_ens(ensemble ens1,ensemble ens2)
+```int eg_ens(ensemble ens1,ensemble ens2)
+```
 </p></details>
 est_ens  
 est_etat  
