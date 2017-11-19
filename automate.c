@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "automate.h"
+#include "afficheur.h"
 #include <string.h>
 
 void A_defaut(Automate *A){
@@ -104,5 +105,23 @@ int init_aut(Automate *A){
     return 3;
   }
   A_defaut(A);
+  return 1;
+}
+
+// utilisation de l'automate
+
+int rec_mot(Automate A,char mot[]){
+  
+}
+
+int rec_mot_d(Automate_d A,char mot []){
+  ensemble etats[40];
+  int i;
+  etats[0]=A.id;
+  for(i=0;i<strlen(mot)-1;i++){
+    if(trans_d(A.td,etats[i],mot[i],etats[i+1])==0){
+      return 0;
+    }
+  }
   return 1;
 }

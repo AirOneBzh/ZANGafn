@@ -19,3 +19,5 @@ typedef struct{
 
 int init_aut(Automate *A);
 void A_defaut(Automate *A);
+int rec_mot(Automate A,char mot[]);
+int rec_mot_d(Automate_d A,char mot []);

@@ -69,8 +69,11 @@ int aff_aut(Automate A){
 
 int main (){
   Automate a;
+  ensemble ens;
   init_aut(&a);
   aff_aut(a);
+  aff_ens(ens);
+  rec_mot(a,"abb");
   return 1;
 }
 

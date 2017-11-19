@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "automate.h"
 
 
@@ -71,8 +72,18 @@ int supp_etat(ensemble *e,int n){
   return 0;
 }
 
-
-
+int sep_ens_init(ensemble i,ensemble e[10]){
+  int k=0,j=1;
+  while(k<=i.ens[0]){
+    if(i.ens[j]==1){
+      e[k].ens[j]=1;
+      e[k].ens[0]=1;
+      k++;
+    }
+    j++;
+  }
+  return 1;
+}
 
 //
 //
@@ -81,14 +92,14 @@ int supp_etat(ensemble *e,int n){
 //
 
 //return trans d'un ens par etiquette sur afn
-int trans(Automate A, ensemble ens_dep, char c,ensemble ens_arr){
+int trans(int t[50], ensemble ens_dep, char c,ensemble ens_arr){
   int i,j;
   ens_arr.ens[0]=ens_dep.ens[0];
   for(i=1; i<=ens_dep.ens[0]; i++){
     if(ens_dep.ens[i]==1){
-      for(j=2; j<=A.t[0]; j+=3){
-        if(A.t[j]==c && i==A.t[j-1]){
-          ens_arr.ens[A.t[j+1]]=1;
+      for(j=2; j<=t[0]; j+=3){
+        if(t[j]==c && i==t[j-1]){
+          ens_arr.ens[t[j+1]]=1;
         }
       }
     }
@@ -149,15 +160,13 @@ int aj_trans_d(ensemble *td[],ensemble ens_dep,char etiq,ensemble ens_arr){
 
 
 // trans mais sur afd
-ensemble trans_d(Automate_d A, ensemble ens_dep, char etiq){
+int trans_d(ensemble td[], ensemble ens_dep, char etiq,ensemble ens_arr){
   int i;
-  ensemble e;
-  e.ens[0]=0;
-
-  for(i=1; i<=A.td[0].ens[0]; i++){
-    if(eg_ens(A.td[i],ens_dep) && A.td[0].ens[i]==etiq){
-      return A.td[i+1];
+  for(i=1; i<=td[0].ens[0]; i++){
+    if(eg_ens(td[i],ens_dep) && td[0].ens[i]==etiq){
+      ens_arr=td[i+1];
+      return 1;
     }
   }
-  return e;
+  return 0;
 }
