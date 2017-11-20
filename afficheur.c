@@ -27,7 +27,15 @@ int aff_trans(int t[]){
   return 1;
 }
 
-int aff_trans_d();
+int aff_trans_d(ensemble td[]){
+  int i;
+  for(i=1;i<=td[0].ens[0];i++){
+    fprintf(stdout,"Transition %d:\n",i);
+    aff_ens(td[i*2]);
+    fprintf(stdout,"Etiquette : %c\n",td[0].ens[i]);
+    aff_ens(td[i*2+1]);
+  }
+}
 
 int aff_aut_d(Automate_d a){
   int i;
@@ -69,11 +77,9 @@ int aff_aut(Automate A){
 
 int main (){
   Automate a;
-  ensemble ens;
   init_aut(&a);
   aff_aut(a);
-  aff_ens(ens);
-  rec_mot(a,"abb");
+  printf("%d\n",rec_mot(a,"aaaa"));
   return 1;
 }
 

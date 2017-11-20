@@ -72,15 +72,14 @@ int supp_etat(ensemble *e,int n){
   return 0;
 }
 
-int sep_ens_init(ensemble i,ensemble e[10]){
-  int k=0,j=1;
-  while(k<=i.ens[0]){
+int sep_ens_init(ensemble i,int r[]){
+  int j;
+  r[0]=0;
+  for(j=1;r[0]<i.ens[0];j++){
     if(i.ens[j]==1){
-      e[k].ens[j]=1;
-      e[k].ens[0]=1;
-      k++;
+      r[0]++;
+      r[r[0]]=j;
     }
-    j++;
   }
   return 1;
 }
@@ -92,16 +91,13 @@ int sep_ens_init(ensemble i,ensemble e[10]){
 //
 
 //return trans d'un ens par etiquette sur afn
-int trans(int t[50], ensemble ens_dep, char c,ensemble ens_arr){
-  int i,j;
-  ens_arr.ens[0]=ens_dep.ens[0];
-  for(i=1; i<=ens_dep.ens[0]; i++){
-    if(ens_dep.ens[i]==1){
-      for(j=2; j<=t[0]; j+=3){
-        if(t[j]==c && i==t[j-1]){
-          ens_arr.ens[t[j+1]]=1;
-        }
-      }
+// retourne nb de transitions
+int trans(int t[50], int etat_dep, char c,int etat_arr[]){
+  int i;
+  for(i=1;i<=t[0]*3;i+=3){
+    if(t[i]==etat_dep && t[i+1]==c){
+      etat_arr[etat_arr[0]]=t[i+2];
+      etat_arr[0]++;
     }
   }
   return 1;

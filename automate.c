@@ -111,7 +111,20 @@ int init_aut(Automate *A){
 // utilisation de l'automate
 
 int rec_mot(Automate A,char mot[]){
-  
+  int i,j;
+  int etats[50][50];
+  sep_ens_init(A.i,etats[0]);
+  for(i=0;i<strlen(mot);i++){
+    for(j=0;j<etats[i][0];j++){
+      trans(A.t,etats[i][j],mot[i],etats[i+1]);
+    }
+  }
+  for(j=0;j<etats[i][0];j++){
+    if(est_etat(A.f,etats[i][j])){
+      return 1;
+    }
+  }
+  return 0;
 }
 
 int rec_mot_d(Automate_d A,char mot []){
