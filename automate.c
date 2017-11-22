@@ -102,6 +102,7 @@ int init_aut(Automate *A){
     return 2;
   }
   if(x==3){
+    A_saisie(A);
     return 3;
   }
   A_defaut(A);
@@ -115,11 +116,13 @@ int rec_mot(Automate A,char mot[]){
   int etats[50][50];
   sep_ens_init(A.i,etats[0]);
   for(i=0;i<strlen(mot);i++){
-    for(j=0;j<etats[i][0];j++){
+    etats[i+1][0]=0;
+    for(j=1;j<=etats[i][0];j++){
       trans(A.t,etats[i][j],mot[i],etats[i+1]);
     }
+
   }
-  for(j=0;j<etats[i][0];j++){
+  for(j=1;j<=etats[i][0];j++){
     if(est_etat(A.f,etats[i][j])){
       return 1;
     }

@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "automate.h"
-
+#include <string.h>
 #define MAX 50
 
 void aff_ens(ensemble e){
@@ -35,6 +35,7 @@ int aff_trans_d(ensemble td[]){
     fprintf(stdout,"Etiquette : %c\n",td[0].ens[i]);
     aff_ens(td[i*2+1]);
   }
+  return 1;
 }
 
 int aff_aut_d(Automate_d a){
@@ -79,7 +80,8 @@ int main (){
   Automate a;
   init_aut(&a);
   aff_aut(a);
-  printf("%d\n",rec_mot(a,"aaaa"));
+  int x=rec_mot(a,"aaaaa");
+  printf("\n%d\n",x);
   return 1;
 }
 

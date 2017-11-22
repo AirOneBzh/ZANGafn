@@ -93,13 +93,15 @@ int sep_ens_init(ensemble i,int r[]){
 //return trans d'un ens par etiquette sur afn
 // retourne nb de transitions
 int trans(int t[50], int etat_dep, char c,int etat_arr[]){
-  int i;
+  int i,n;
+  n=etat_arr[0];
   for(i=1;i<=t[0]*3;i+=3){
     if(t[i]==etat_dep && t[i+1]==c){
-      etat_arr[etat_arr[0]]=t[i+2];
-      etat_arr[0]++;
+      n++;
+      etat_arr[n]=t[i+2];
     }
   }
+  etat_arr[0]=n;
   return 1;
 }
 
