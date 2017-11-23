@@ -49,14 +49,22 @@ int supp_etat(ensemble *e,int n)
 * 1 si un état supprimé
 * 0 sinon _(l'état pouvait être absent)_
 
+##### sep_ens_init
+```
+int sep_ens_init(ensemble i, int r[])
+```
+* Insère dans r les états initiaux convertis sous forme d'entier
+
 ##### trans
 ```
-int trans(Automate A,  
-          ensemble ens_dep,  
+int trans(int t[],  
+          int ens_dep,  
           char c,  
-          ensemble ens_arr)  
+          int ens_arr[])  
 ```
 * 1 si un état est renvoyé _(ens_arr)_
+* Modifie tableau ens_arr et insère etat d'arrivée des transitions depuis etat_dep avec étiquette c
+* Insère seulement à la suite de la table afin d'être conforme aux chemins d'un AFN
 
 ##### est_trans
 ```
@@ -145,13 +153,27 @@ int A_saisie(Automate *A)
 int init_aut(Automate *A)
 ```
 * Propose à l'utilisateur le choix de la configuration de l'automate
+1. A_defaut _automate par défaut_
+1. A_fichier _automate lu dans le fichier *loader*_
+1. A_saisie _si l'envie vous prend de saisir l'automate en répondant aux questions_
 
 ##### det_aut  
-*dernière des fonctions à écrire*
 ```
 int det_aut(Automate A,Automate *B)
 ```
 * Modifie l'automate B pour qu'il soit l'automate A determinisé
+
+##### rec_mot
+```
+int rec_mot(Automate A,char mot[])
+```
+* 1 si le mot est reconnu par l'automate
+
+##### rec_mot_d
+```
+int rec_mot_d(Automate_d A,char mot [])
+```
+* 1 si le mot est reconnu par l'automate déterministe
 
 ## Structures
 
