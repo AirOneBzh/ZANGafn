@@ -110,35 +110,30 @@ int init_aut(Automate *A){
   return 1;
 }
 
-int aj_ens_d(ensemble e,ensemble q_d[],int *t_d[]){
-  int i;
+
+int res_trans_d(Automate A,int t_d[][MAX], ensemble q_d[]){
+  int i,j,k,dep[10],arr[10];
+  ensemble e;
   for(i=1;i<=q_d[0].ens[0];i++){
-    if(eg_ens(q_d[i],e))
-    return i;
+    for(j=1;j<=A.a[0];j++){
+      etoi(q_d[t_d[i][0]],dep);
+      for(k=1;k<=dep[0];k++){
+        trans(A.t,dep[k],A.a[j],arr);
+      }
+      itoe(arr,e);
+      t_d[i][j]=ens_d(e,q_d,t_d);
+    }
   }
-  q_d[0].ens[0]++;
-  q_d[q_d[0].ens[0]]=e;
-  t_d[0][0]++;
-  t_d[t_d[0][0]][0]=q_d[0].ens[0];
-  return q_d[0].ens[0];
-}
-
-int res_trans_d(int *t_d[], ensemble q_d[]){
   return 1;
 }
 
-int det_qt(char etiq[],int t[],int t_d[][MAX],ensemble q_d[]){
-
-  return 1;
-}
 
 // utilisation de l'automate
 int det_aut(Automate A,Automate_d *Ad){
-  det_qt(A.a,A.t,Ad->t_d,Ad->q_d);
+  ens_d(A.i,Ad->q_d,Ad->t_d);
+  res_trans_d(A,Ad->t_d,Ad->q_d);
   strcpy(Ad->a,A.a);
-  printf("%s",A.a);
   Ad->i_d=1;
-
   return 1;
 }
 
@@ -146,7 +141,7 @@ int rec_mot(Automate A,char mot[]){
   int i,j;
 
   int etats[50][50];
-  sep_ens_init(A.i,etats[0]);
+  etoi(A.i,etats[0]);
   for(i=0;i<strlen(mot);i++){
     etats[i+1][0]=0;
     for(j=1;j<=etats[i][0];j++){

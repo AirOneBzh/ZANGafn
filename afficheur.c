@@ -81,6 +81,7 @@ int main (){
   Automate_d ad;
   init_aut(&a);
   aff_aut(a);
+  det_aut(a,&ad);
   return 1;
 }
 
