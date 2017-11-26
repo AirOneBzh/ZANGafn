@@ -11,4 +11,4 @@ int aj_etat(ensemble *e,int n);
 int aj_trans(int t[50],int etat_dep,char etiq,int etat_arr);
 int sep_ens_init(ensemble i,int r[]);
 int trans(int t[50], int etat_dep, char c,int etat_arr[]);
-int trans_d(ensemble td[50], ensemble ens_dep, char etiq,ensemble ens_arr);
+int trans_d(int t_d[][MAX],int ens_dep, char etiq,int ens_arr,ensemble q_d[]);

@@ -132,7 +132,7 @@ int aj_trans(int *t,int etat_dep,char etiq,int etat_arr){
 // det
 //
 //
-
+/*
 int est_trans_d(ensemble td[],ensemble ens_dep,char etiq,ensemble ens_arr){
   int i;
   for(i=1;i<td[0].ens[0];i++){
@@ -144,27 +144,18 @@ int est_trans_d(ensemble td[],ensemble ens_dep,char etiq,ensemble ens_arr){
 }
 
 // ajouter transition etat / initial /final
-int aj_trans_d(ensemble *td[],ensemble ens_dep,char etiq,ensemble ens_arr){
-  if(est_trans_d(*td,ens_dep,etiq,ens_arr)){
-    return 0;   //aucune transition ajoutée
-  }
-  (*td[td[0]->ens[0]*2+1])=ens_dep;
-  (*td[td[0]->ens[0]*2+2])=ens_arr;
-  td[0]->ens[td[0]->ens[0]+1]=etiq;
-  td[0]->ens[0]++;
-  return 1;  //une trans ajoutée
-}
 
 
 
 // trans mais sur afd
-int trans_d(ensemble td[], ensemble ens_dep, char etiq,ensemble ens_arr){
+int trans_d(int t_d[][MAX],int ens_dep, char etiq,int ens_arr,ensemble q_d[]){
   int i;
-  for(i=1; i<=td[0].ens[0]; i++){
-    if(eg_ens(td[i],ens_dep) && td[0].ens[i]==etiq){
-      ens_arr=td[i+1];
+  for(i=1; i<=t_d[0][0]; i++){
+    if(eg_ens(q_d[t_d[i][0]],q_d[ens_dep]) && t_d[0][i]==etiq){
+      ens_arr=t_d[i+1][0];
       return 1;
     }
   }
   return 0;
 }
+*/

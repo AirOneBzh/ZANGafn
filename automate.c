@@ -59,7 +59,7 @@ int A_fichier(Automate *A){
       if(c=='a'){
         sscanf(donnee,"%c",&etiq);
         A->a[0]++;
-        A->a[A->a[0]-'\0']=etiq;
+        A->a[A->a[0]-0]=etiq;   // -0 pour convertir code ascii en int
         for(k=0;k<n-j;k++){
           donnee[k*2]=donnee[(k+1)*2];
         }
@@ -88,6 +88,7 @@ int A_fichier(Automate *A){
   return 1;
 }
 
+
 int A_saisie(Automate *A){
   printf("Saisie");
   return 1;
@@ -109,10 +110,41 @@ int init_aut(Automate *A){
   return 1;
 }
 
+int aj_ens_d(ensemble e,ensemble q_d[],int *t_d[]){
+  int i;
+  for(i=1;i<=q_d[0].ens[0];i++){
+    if(eg_ens(q_d[i],e))
+    return i;
+  }
+  q_d[0].ens[0]++;
+  q_d[q_d[0].ens[0]]=e;
+  t_d[0][0]++;
+  t_d[t_d[0][0]][0]=q_d[0].ens[0];
+  return q_d[0].ens[0];
+}
+
+int res_trans_d(int *t_d[], ensemble q_d[]){
+  return 1;
+}
+
+int det_qt(char etiq[],int t[],int t_d[][MAX],ensemble q_d[]){
+
+  return 1;
+}
+
 // utilisation de l'automate
+int det_aut(Automate A,Automate_d *Ad){
+  det_qt(A.a,A.t,Ad->t_d,Ad->q_d);
+  strcpy(Ad->a,A.a);
+  printf("%s",A.a);
+  Ad->i_d=1;
+
+  return 1;
+}
 
 int rec_mot(Automate A,char mot[]){
   int i,j;
+
   int etats[50][50];
   sep_ens_init(A.i,etats[0]);
   for(i=0;i<strlen(mot);i++){
@@ -130,14 +162,12 @@ int rec_mot(Automate A,char mot[]){
   return 0;
 }
 
-int rec_mot_d(Automate_d A,char mot []){
-  ensemble etats[40];
+int rec_mot_d(Automate_d A,ensemble q_d[],char mot[]){
+
   int i;
-  etats[0]=A.id;
+
   for(i=0;i<strlen(mot)-1;i++){
-    if(trans_d(A.td,etats[i],mot[i],etats[i+1])==0){
-      return 0;
-    }
+
   }
   return 1;
 }

@@ -8,7 +8,7 @@ void aff_ens(ensemble e){
   int i;
   int acc=0;
   fprintf(stdout," {");
-  for (i=1;acc<e.ens[0];i++){
+  for (i=1;i<10;i++){
     if(e.ens[i]==1){
       fprintf(stdout," %d",i);
       acc++;
@@ -41,14 +41,14 @@ int aff_trans_d(ensemble td[]){
 int aff_aut_d(Automate_d a){
   int i;
   fprintf(stdout,"Q = {");
-  for(i=1;i<=a.qd[0].ens[1];i++){
-    aff_ens(a.qd[i]);
+  for(i=1;i<=a.q_d[0].ens[0];i++){
+    aff_ens(a.q_d[i]);
   }
-  fprintf(stdout,"}I={");
-  aff_ens(a.id);
-  fprintf(stdout,"}Q={");
-  for(i=1;i<=a.fd[0].ens[0];i++){
-    aff_ens(a.fd[i]);
+  fprintf(stdout,"}\nI={");
+  aff_ens(a.q_d[a.i_d]);
+  fprintf(stdout,"}\nF={");
+  for(i=1;i<=a.f_d.ens[0];i++){
+    aff_ens(a.q_d[i]);
   }
   fprintf(stdout,"}\n");
 
@@ -78,12 +78,14 @@ int aff_aut(Automate A){
 
 int main (){
   Automate a;
+  Automate_d ad;
   init_aut(&a);
   aff_aut(a);
-  int x=rec_mot(a,"aaaaa");
-  printf("\n%d\n",x);
   return 1;
 }
 
-//init d'un automate par défaut et avec lecture de fichier avec affichage
-// a faire affichage de ses transitions
+// je fais le tab de delta dans automate.c
+// faut modif est_ aj_ ... en une fonction puisque fonctions est_ utilisées uniquement dans aj_???
+// '--> à vérif donc
+// q_d_ens qui référence les ensembles remplace ensemble [] en int
+// -> corriger fonctions utilisant Ad.td
