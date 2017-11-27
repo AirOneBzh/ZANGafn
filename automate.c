@@ -104,6 +104,7 @@ int init_aut(Automate *A){
   }
   if(x==3){
     A_saisie(A);
+    A_defaut(A);
     return 3;
   }
   A_defaut(A);
