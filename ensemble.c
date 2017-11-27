@@ -90,7 +90,7 @@ int itoe(int r[],ensemble e){
   for(i=1;e.ens[0]<r[0];i++){
     if(r[e.ens[0]+1]==i){
       e.ens[0]++;
-      e.ens[e.ens[0]]==1;
+      e.ens[e.ens[0]]=1;
     }
   }
   return 1;
