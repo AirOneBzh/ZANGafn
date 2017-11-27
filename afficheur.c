@@ -38,23 +38,6 @@ int aff_trans_d(ensemble td[]){
   return 1;
 }
 
-int aff_aut_d(Automate_d a){
-  int i;
-  fprintf(stdout,"Q = {");
-  for(i=1;i<=a.q_d[0].ens[0];i++){
-    aff_ens(a.q_d[i]);
-  }
-  fprintf(stdout,"}\nI={");
-  aff_ens(a.q_d[a.i_d]);
-  fprintf(stdout,"}\nF={");
-  for(i=1;i<=a.f_d.ens[0];i++){
-    aff_ens(a.q_d[i]);
-  }
-  fprintf(stdout,"}\n");
-
-
-  return 1;
-}
 
 //affiche un automate dans le terminal
 int aff_aut(Automate A){
@@ -74,6 +57,35 @@ int aff_aut(Automate A){
   printf("\n");
 
   return 1;
+}
+
+int aff_aut_d(Automate_d a){
+  int i;
+  int j;
+  fprintf(stdout, "Q = \n");
+  for(i=1; i<=a.q_d[0].ens[0]; etat++){
+    aff_ens(a.q_d[i]);
+  }
+  fprintf(stdout, "A =\n");
+  fprintf(stdout, "%s \n", a.a);
+  fprintf(stdout, "T=\n");
+  for(i=1; i<=a.a[0]*a.t_d[0][0]; i++){
+    for(j=1; j<=a.a[0]; j++){
+      aff_ens(t_d[i][0]);
+      fprintf(stdout, "%c\n", t_d[0][j]);
+      aff_ens(t_d[i][j]);
+    }
+  }
+  fprintf(stdout, "I=\n");
+  aff_ens(a.q_d[a.i_d]);
+  fprintf(stdout, "F=\n");
+  int acc=0;
+  for(i=1; acc<=f_d.ens[0];i++){
+    if(a.f_d.ens[i]==1){
+      aff_ens(a.q_d[i]);
+      acc++;
+    }
+  } return 1;
 }
 
 int main (){
