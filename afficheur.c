@@ -62,18 +62,26 @@ int aff_aut(Automate A){
 int aff_aut_d(Automate_d a){
   int i;
   int j;
+  char alph[MAX];
   fprintf(stdout, "Q = \n");
   for(i=1; i<=a.q_d[0].ens[0]; i++){
     aff_ens(a.q_d[i]);
   }
   fprintf(stdout, "A =\n");
+  
   fprintf(stdout, "%s \n", a.a);
-  fprintf(stdout, "T=\n");
+  fprintf(stdout, "T =\n");
   for(i=1; i<=a.a[0]*a.t_d[0][0]; i++){
     for(j=1; j<=a.a[0]; j++){
+<<<<<<< HEAD
       aff_ens(a.t_d[i][0]);
       fprintf(stdout, "%c\n", t_d[0][j]);
       aff_ens(a.t_d[i][j]);
+=======
+      aff_ens(a.q_d[a.t_d[i][0]]);
+      fprintf(stdout, "%c\n", a.t_d[0][j]);
+      aff_ens(a.q_d[a.t_d[i][j]]);
+>>>>>>> b49c6563213da6aaf176a02bccd4d0853f6ca1c4
     }
   }
   fprintf(stdout, "I=\n");
@@ -89,16 +97,14 @@ int aff_aut_d(Automate_d a){
 }
 
 int main (){
-  int i;
+
   Automate a;
   Automate_d ad;
   init_aut(&a);
   aff_aut(a);
   det_aut(a,&ad);
-  for(i=1;i<=5;i++){
-    aff_ens(ad.q_d[i]);
-    printf("td%d \n",ad.t_d[i][0]);
-  }
+  aff_aut_d(ad);
+
   return 1;
 }
 
