@@ -72,13 +72,25 @@ int supp_etat(ensemble *e,int n){
   return 0;
 }
 
-int sep_ens_init(ensemble i,int r[]){
-  int j;
+int etoi(ensemble e,int r[]){
+  int i;
   r[0]=0;
-  for(j=1;r[0]<i.ens[0];j++){
-    if(i.ens[j]==1){
+  for(i=1;r[0]<e.ens[0];i++){
+    if(e.ens[i]==1){
       r[0]++;
-      r[r[0]]=j;
+      r[r[0]]=i;
+    }
+  }
+  return 1;
+}
+
+int itoe(int r[],ensemble e){
+  int i;
+  e.ens[0]=0;
+  for(i=1;e.ens[0]<r[0];i++){
+    if(r[e.ens[0]+1]==i){
+      e.ens[0]++;
+      e.ens[e.ens[0]]=1;
     }
   }
   return 1;
@@ -93,8 +105,8 @@ int sep_ens_init(ensemble i,int r[]){
 //return trans d'un ens par etiquette sur afn
 // retourne nb de transitions
 int trans(int t[50], int etat_dep, char c,int etat_arr[]){
-  int i,n;
-  n=etat_arr[0];
+  int i,n,m;
+  n=m=etat_arr[0];
   for(i=1;i<=t[0]*3;i+=3){
     if(t[i]==etat_dep && t[i+1]==c){
       n++;
@@ -128,6 +140,18 @@ int aj_trans(int *t,int etat_dep,char etiq,int etat_arr){
   return 1;
 }
 
+int ens_d(ensemble e,ensemble q_d[],int t_d[][MAX]){
+  int i;
+  for(i=1;i<=q_d[0].ens[0];i++){
+    if(eg_ens(q_d[i],e))
+    return i;
+  }
+  q_d[0].ens[0]++;
+  q_d[q_d[0].ens[0]]=e;
+  t_d[0][0]++;
+  t_d[t_d[0][0]][0]=q_d[0].ens[0];
+  return q_d[0].ens[0];
+}
 
 // det
 //

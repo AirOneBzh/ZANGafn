@@ -89,10 +89,16 @@ int aff_aut_d(Automate_d a){
 }
 
 int main (){
+  int i;
   Automate a;
   Automate_d ad;
   init_aut(&a);
   aff_aut(a);
+  det_aut(a,&ad);
+  for(i=1;i<=5;i++){
+    aff_ens(ad.q_d[i]);
+    printf("td%d \n",ad.t_d[i][0]);
+  }
   return 1;
 }
 
