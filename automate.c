@@ -84,7 +84,7 @@ int A_fichier(Automate *A){
     i++;
   }
   while(1);
-
+  fclose(f);
   return 1;
 }
 
@@ -132,8 +132,11 @@ int res_trans_d(Automate A,int t_d[][MAX], ensemble q_d[]){
 // utilisation de l'automate
 int det_aut(Automate A,Automate_d *Ad){
   ens_d(A.i,Ad->q_d,Ad->t_d);
+  aff_ens(Ad->q_d[0]);
+  aff_ens(Ad->q_d[1]);
   res_trans_d(A,Ad->t_d,Ad->q_d);
-  strcpy(Ad->a,A.a);
+  strcpy(A.a,Ad->a);
+  printf("%s",Ad->a);
   Ad->i_d=1;
   return 1;
 }

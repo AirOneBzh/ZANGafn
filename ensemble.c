@@ -104,9 +104,9 @@ int itoe(int r[],ensemble e){
 
 //return trans d'un ens par etiquette sur afn
 // retourne nb de transitions
-int trans(int t[50], int etat_dep, char c,int etat_arr[]){
-  int i,n,m;
-  n=m=etat_arr[0];
+int trans(int t[], int etat_dep, char c,int etat_arr[]){
+  int i,n;
+  n=etat_arr[0];
   for(i=1;i<=t[0]*3;i+=3){
     if(t[i]==etat_dep && t[i+1]==c){
       n++;
@@ -152,34 +152,3 @@ int ens_d(ensemble e,ensemble q_d[],int t_d[][MAX]){
   t_d[t_d[0][0]][0]=q_d[0].ens[0];
   return q_d[0].ens[0];
 }
-
-// det
-//
-//
-/*
-int est_trans_d(ensemble td[],ensemble ens_dep,char etiq,ensemble ens_arr){
-  int i;
-  for(i=1;i<td[0].ens[0];i++){
-    if(eg_ens(td[i],ens_dep) && eg_ens(td[i+1],ens_arr) && td[0].ens[i]==etiq){
-      return 1;
-    }
-  }
-  return 0;
-}
-
-// ajouter transition etat / initial /final
-
-
-
-// trans mais sur afd
-int trans_d(int t_d[][MAX],int ens_dep, char etiq,int ens_arr,ensemble q_d[]){
-  int i;
-  for(i=1; i<=t_d[0][0]; i++){
-    if(eg_ens(q_d[t_d[i][0]],q_d[ens_dep]) && t_d[0][i]==etiq){
-      ens_arr=t_d[i+1][0];
-      return 1;
-    }
-  }
-  return 0;
-}
-*/

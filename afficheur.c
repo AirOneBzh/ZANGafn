@@ -14,26 +14,24 @@ void aff_ens(ensemble e){
       acc++;
     }
   }
-  fprintf(stdout," }\n");
+  fprintf(stdout," }");
 }
 
-int aff_trans(int t[]){
+int aff_trans(ensemble t[][MAX],ensemble q_d[]){
   int i;
-  fprintf(stdout," { ");
-  for(i=0;i<t[0];i++){
-    fprintf(stdout,"(%d,%c,%d) ",t[i*3+1],t[i*3+2],t[i*3+3]);
+  for(i=1;i<=t[0][0]/q_d[0].ens[0];i++){
+    etoi()
   }
-  fprintf(stdout,"}\n");
-  return 1;
 }
 
-int aff_trans_d(ensemble td[]){
+int aff_trans_d(int t_d[][MAX],ensemble q_d[]){
   int i;
-  for(i=1;i<=td[0].ens[0];i++){
-    fprintf(stdout,"Transition %d:\n",i);
-    aff_ens(td[i*2]);
-    fprintf(stdout,"Etiquette : %c\n",td[0].ens[i]);
-    aff_ens(td[i*2+1]);
+  for(i=1; i<=; i++){
+    for(j=1; j<=a[0]; j++){
+      aff_ens(q_d[t_d[i][0]]);
+      fprintf(stdout, " : %c : ", t_d[0][j]);
+      fprintf(stdout,"\n");
+    }
   }
   return 1;
 }
@@ -44,15 +42,15 @@ int aff_aut(Automate A){
   int i;
   fprintf(stdout,"Q=");
   aff_ens(A.q);
-  fprintf(stdout,"A= { ");
+  fprintf(stdout,"\nA= { ");
   for(i=1;i<=A.a[0];i++){
     fprintf(stdout,"%c ",A.a[i]);
   }
   fprintf(stdout,"}\nT=");
   aff_trans(A.t);
-  fprintf(stdout,"I=");
+  fprintf(stdout,"\nI=");
   aff_ens(A.i);
-  fprintf(stdout,"F=");
+  fprintf(stdout,"\nF=");
   aff_ens(A.f);
   printf("\n");
 
@@ -60,24 +58,22 @@ int aff_aut(Automate A){
 }
 
 int aff_aut_d(Automate_d a){
-  int i;
-  int j;
+  int i,j;
   char alph[MAX];
-  fprintf(stdout, "Q = \n");
+  strcpy(a.a,alph);
+  fprintf(stdout, "\n\nQ = \n");
   for(i=1; i<=a.q_d[0].ens[0]; i++){
     aff_ens(a.q_d[i]);
   }
-  fprintf(stdout, "A =\n");
-  
+  fprintf(stdout, "\nA = ");
+  i=0;
+  while(alph[i]!='\0'){
+    alph[i]=alph[i+1];
+    i++;
+  }
   fprintf(stdout, "%s \n", a.a);
   fprintf(stdout, "T =\n");
-  for(i=1; i<=a.a[0]*a.t_d[0][0]; i++){
-    for(j=1; j<=a.a[0]; j++){
-      aff_ens(a.q_d[a.t_d[i][0]]);
-      fprintf(stdout, "%c\n", a.t_d[0][j]);
-      aff_ens(a.q_d[a.t_d[i][j]]);
-    }
-  }
+
   fprintf(stdout, "I=\n");
   aff_ens(a.q_d[a.i_d]);
   fprintf(stdout, "F=\n");
@@ -87,7 +83,9 @@ int aff_aut_d(Automate_d a){
       aff_ens(a.q_d[i]);
       acc++;
     }
-  } return 1;
+  }
+  fprintf(stdout,"\n");
+  return 1;
 }
 
 int main (){
