@@ -73,14 +73,14 @@ int aff_aut_d(Automate_d a){
 <<<<<<< HEAD
   fprintf(stdout, "A =\n");
 
-=======
+
   fprintf(stdout, "\nA = ");
   i=0;
   while(alph[i]!='\0'){
     alph[i]=alph[i+1];
     i++;
   }
->>>>>>> 64dc8130b23544c1718ca45659567539198fed35
+
   fprintf(stdout, "%s \n", a.a);
   fprintf(stdout, "T =\n");
 
