@@ -17,20 +17,25 @@ void aff_ens(ensemble e){
   fprintf(stdout," }");
 }
 
-int aff_trans(ensemble t[][MAX],ensemble q_d[]){
-  int i;
-  for(i=1;i<=t[0][0]/q_d[0].ens[0];i++){
-    etoi()
+int aff_trans(ensemble t[][MAX]){
+  int i,j,k,arr[MAX];
+  for(i=1;i<=t[0][0].ens[0];i++){      //.ens[0] = nb etats dep
+    for(j=1;j<=t[0][0].ens[1];j++){   // .ens[1] = nb alphabet
+      etoi(t[i][j],arr);
+      for(k=1;k<=arr[0];k++){
+        fprintf(stdout, "(%d %c %d) ", i, t[0][j],arr[k]);
+      }
+    }
   }
 }
 
 int aff_trans_d(int t_d[][MAX],ensemble q_d[]){
   int i;
-  for(i=1; i<=; i++){
-    for(j=1; j<=a[0]; j++){
+  for(i=1; i<=t[0][0].ens[0]; i++){      //.ens[0] = nb etats dep
+    for(j=1; j<=t[0][0].ens[1]; j++){   // .ens[1] = nb alphabet
       aff_ens(q_d[t_d[i][0]]);
       fprintf(stdout, " : %c : ", t_d[0][j]);
-      fprintf(stdout,"\n");
+      aff_ens(q_d[t_d[i][j]);
     }
   }
   return 1;
