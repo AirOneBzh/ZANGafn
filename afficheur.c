@@ -19,24 +19,29 @@ void aff_ens(ensemble e){
 
 int aff_trans(ensemble t[][MAX]){
   int i,j,k,arr[MAX];
+  fprintf(stdout,"{ ");
   for(i=1;i<=t[0][0].ens[0];i++){      //.ens[0] = nb etats dep
     for(j=1;j<=t[0][0].ens[1];j++){   // .ens[1] = nb alphabet
       etoi(t[i][j],arr);
       for(k=1;k<=arr[0];k++){
-        fprintf(stdout, "(%d %c %d) ", i, t[0][j],arr[k]);
+        fprintf(stdout, "(%d %c %d) ", i, t[0][j].ens[0],arr[k]);
       }
     }
   }
+  fprintf(stdout,"}");
+  return 1;
 }
 
 int aff_trans_d(int t_d[][MAX],ensemble q_d[]){
-  int i;
-  for(i=1; i<=t[0][0].ens[0]; i++){      //.ens[0] = nb etats dep
-    for(j=1; j<=t[0][0].ens[1]; j++){   // .ens[1] = nb alphabet
-      aff_ens(q_d[t_d[i][0]]);
-      fprintf(stdout, " : %c : ", t_d[0][j]);
-      aff_ens(q_d[t_d[i][j]);
+  int i,j;
+  for(i=1; i<=q_d[0].ens[0]; i++){ //nombre d'états dep
+    for(j=1; j<=t_d[0][0]; j++){       // t_d[0][0]     = lg alphabet
+      aff_ens(q_d[i]);
+      fprintf(stdout,": %c :",t_d[0][j]);
+      aff_ens(q_d[t_d[i][j]]);
+      printf("\n");
     }
+    printf("\n");
   }
   return 1;
 }
@@ -51,7 +56,7 @@ int aff_aut(Automate A){
   for(i=1;i<=A.a[0];i++){
     fprintf(stdout,"%c ",A.a[i]);
   }
-  fprintf(stdout,"}\nT=");
+  fprintf(stdout,"}\nT= ");
   aff_trans(A.t);
   fprintf(stdout,"\nI=");
   aff_ens(A.i);
@@ -63,7 +68,7 @@ int aff_aut(Automate A){
 }
 
 int aff_aut_d(Automate_d a){
-  int i,j;
+  int i;
   char alph[MAX];
   strcpy(a.a,alph);
   fprintf(stdout, "\n\nQ = \n");
@@ -80,13 +85,17 @@ int aff_aut_d(Automate_d a){
     alph[i]=alph[i+1];
     i++;
   }
+<<<<<<< HEAD
 
   fprintf(stdout, "%s \n", a.a);
+=======
+  fprintf(stdout, "%s \n",alph);
+>>>>>>> 75ea209c1084bb9edbef5a8543f317eed2ffe20d
   fprintf(stdout, "T =\n");
-
-  fprintf(stdout, "I=\n");
+  aff_trans_d(a.t_d,a.q_d);
+  fprintf(stdout, "\nI=\n");
   aff_ens(a.q_d[a.i_d]);
-  fprintf(stdout, "F=\n");
+  fprintf(stdout, "\nF=\n");
   int acc=0;
   for(i=1; acc<=a.f_d.ens[0];i++){
     if(a.f_d.ens[i]==1){

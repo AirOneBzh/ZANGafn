@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-
 #include "automate.h"
 
 
@@ -104,51 +103,62 @@ int itoe(int r[],ensemble e){
 
 //return trans d'un ens par etiquette sur afn
 // retourne nb de transitions
-int trans(int t[], int etat_dep, char c,int etat_arr[]){
-  int i,n;
+int trans(ensemble t[][MAX], int etat_dep, char etiq,int etat_arr[]){
+  int i,n,c,tmp[MAX];
   n=etat_arr[0];
-  for(i=1;i<=t[0]*3;i+=3){
-    if(t[i]==etat_dep && t[i+1]==c){
-      n++;
-      etat_arr[n]=t[i+2];
+  for(c=1;c<=t[0][0].ens[1];c++){
+    if(t[0][c].ens[0]==etiq){
+      break;
     }
+  }
+  etoi(t[etat_dep][c],tmp);
+  for(i=1;i<=tmp[0];i++){
+    etat_arr[etat_arr[0]]=tmp[i];
+    etat_arr[0]++;
   }
   etat_arr[0]=n;
   return 1;
 }
 
-int est_trans(int t[],int etat_dep,char etiq,int etat_arr){
-  int i;
-  for(i=0;i<t[0];i++){
-    if(etat_dep==t[i] && etiq==t[i+1] && etat_arr==t[i+2]){
+int est_trans(ensemble t[][MAX],int etat_dep,char etiq,int etat_arr){
+  int i,j;
+  for(i=1;i<=t[0][0].ens[1];i++){
+    if(t[0][i].ens[0]==etiq){
+      break;
+    }
+  }
+  for(j=1;j<=t[etat_dep][i].ens[0];j++){
+    if(t[etat_dep][i].ens[j]==etat_arr){
       return 1;
     }
   }
   return 0;
 }
 
-int aj_trans(int *t,int etat_dep,char etiq,int etat_arr){
-  int n = t[0];
+int aj_trans(ensemble t[][MAX],int etat_dep,char etiq,int etat_arr){
+  int i;
   if(est_trans(t,etat_dep,etiq,etat_arr)){
     return 0;
   }
-  t[n*3+1]=etat_dep;
-  t[n*3+2]=etiq;
-  t[n*3+3]=etat_arr;
-  t[0]++;
-
+  for(i=1;i<=t[0][0].ens[1];i++){
+    if(t[0][i].ens[0]==etiq){
+      break;
+    }
+  }
+  aj_etat(&t[etat_dep][i],etat_arr);
   return 1;
 }
 
 int ens_d(ensemble e,ensemble q_d[],int t_d[][MAX]){
   int i;
   for(i=1;i<=q_d[0].ens[0];i++){
-    if(eg_ens(q_d[i],e))
-    return i;
+    if(eg_ens(q_d[i],e)){
+      return i;
+    }
   }
   q_d[0].ens[0]++;
   q_d[q_d[0].ens[0]]=e;
-  t_d[0][0]++;
-  t_d[t_d[0][0]][0]=q_d[0].ens[0];
+
+  t_d[q_d[0].ens[0]][0]=q_d[0].ens[0];
   return q_d[0].ens[0];
 }
