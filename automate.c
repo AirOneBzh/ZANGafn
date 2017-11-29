@@ -130,8 +130,9 @@ int res_trans_d(Automate A,int t_d[][MAX], ensemble q_d[]){
       arr[0]=0;
       for(k=1;k<=dep[0];k++){
         trans(A.t,dep[k],A.a[j],arr);
-        printf("ee%d",arr[0]);
+        printf("ee%d ",arr[k]);
       }
+
       itoe(arr,e);
       aff_ens(e);
       t_d[i][j]=ens_d(e,q_d,t_d);
