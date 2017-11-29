@@ -64,17 +64,21 @@ int A_fichier(Automate *A){
       if(c=='a'){
         sscanf(donnee,"%c",&etiq);
         A->a[0]++;
+
         A->a[A->a[0]-0]=etiq;   // -0 pour convertir code ascii en int
+        A->t[0][A->a[0]-0].ens[0]=etiq;
         for(k=0;k<n-j;k++){
           donnee[k*2]=donnee[(k+1)*2];
         }
-        A->t[0][0].ens[1]++;
       }
       if(c=='t'){
+        A->t[0][0].ens[1]=A->a[0];
         sscanf(donnee,"%d%c%d ",&etat1,&etiq,&etat2);
         aj_trans(A->t,etat1,etiq,etat2);
+        printf("1 %d e %c 2 %d\n",etat1,etiq,etat2);
         donnee[j*4]=donnee[j*4+1]=donnee[j*4+2]=' ';
       }
+
       if(c=='i'){
         sscanf(donnee,"%d",&etat1);
         aj_etat(&A->i,etat1);
@@ -90,42 +94,40 @@ int A_fichier(Automate *A){
     i++;
   }
   while(1);
+
+  i=0;
+  while(A->a[i]!='\0'){
+    A->t[0][i].ens[0]=A->a[i];
+    i++;
+  }
   fclose(f);
-  return 1;
-}
-
-
-int A_saisie(Automate *A){
-  printf("Saisie");
   return 1;
 }
 
 int init_aut(Automate *A){
   int x;
-  fprintf(stdout,"Quel type de saisie voulez vous?\n1- Automate de base (par defaut)\n2- Lecture par fichier\n3- Saisie manuelle (bon chance)\n");
+  fprintf(stdout,"Quel type de saisie voulez vous?\n1- Automate de base (par defaut)\n2- Lecture par fichier\n");
   fscanf(stdin,"%d",&x);
+  if(x!=1 && x!=2){
+    fprintf(stdout, "Choix indisponible automate par défaut choisi");
+  }
   if(x==2){
     while(A_fichier(A)==0);
     return 2;
-  }
-  if(x==3){
-    A_saisie(A);
-    A_defaut(A);
-    return 3;
   }
   A_defaut(A);
   return 1;
 }
 
 int tr_finaux(ensemble f,ensemble q_d[],ensemble *f_d){
-  int fin[MAX];
+  int fin[MAX],fin_d[MAX],i,j,k;
   etoi(f, fin);
   for(i=1; i<=fin[0];i++ ){
     for(j=1; j<=q_d[0].ens[0]; j++){
       etoi(q_d[j], fin_d);
       for(k=1; k<=fin_d[0];k++){
         if(fin_d[k]==fin[k]){
-          aj_etat(f_d, ens_d(q_d[j]));
+          aj_etat(f_d, j);
         }
       }
     }
@@ -142,9 +144,10 @@ int res_trans_d(Automate A,int t_d[][MAX], ensemble q_d[]){
       arr[0]=0;
       for(k=1;k<=dep[0];k++){
         trans(A.t,dep[k],A.a[j],arr);
-        printf("ee%d ",arr[k]);
       }
-
+      for (k=1;k<=arr[0];k++){
+        printf("arr[k] %d\n",arr[k]);
+      }
       itoe(arr,e);
       aff_ens(e);
       t_d[i][j]=ens_d(e,q_d,t_d);
@@ -166,8 +169,7 @@ int det_aut(Automate A,Automate_d *Ad){
   res_trans_d(A,Ad->t_d,Ad->q_d);
   strcpy(A.a,Ad->a);
   printf("%s",Ad->a);
-
-  tr_finaux(A.f,*Ad->q_d,Ad->f_d);   //trouver finaux
+  tr_finaux(A.f,Ad->q_d,&Ad->f_d);   //trouver finaux
   return 1;
 }
 

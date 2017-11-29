@@ -71,24 +71,20 @@ int aff_aut_d(Automate_d a){
   int i;
   char alph[MAX];
   strcpy(a.a,alph);
+  printf("%c",alph[1]);
   fprintf(stdout, "\n\nQ = \n");
   for(i=1; i<=a.q_d[0].ens[0]; i++){
     aff_ens(a.q_d[i]);
   }
-  fprintf(stdout, "A =\n");
 
-
-  fprintf(stdout, "\nA = ");
-  i=0;
+  fprintf(stdout, "\nA = { ");
+  i=1;
   while(alph[i]!='\0'){
-    alph[i]=alph[i+1];
+    fprintf(stdout,"%c ",alph[i]);
     i++;
   }
+  fprintf(stdout,"}\n");
 
-
-  fprintf(stdout, "%s \n", a.a);
-
-  fprintf(stdout, "%s \n",alph);
   fprintf(stdout, "T =\n");
   aff_trans_d(a.t_d,a.q_d);
   fprintf(stdout, "\nI=\n");

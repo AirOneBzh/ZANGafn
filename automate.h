@@ -1,5 +1,6 @@
 #include "ensemble.h"
 
+
   //ensemble q_d  // fait une référence d'un ensemble permet
                  // permet un enregistrement d'un ensemble
                 // remplacé par son indice dans tab_delta
@@ -11,15 +12,9 @@
 typedef struct{
   ensemble q;//pos 0=nb d'états;1 si présent état i pos i;0 sinon
   char a[MAX];
-<<<<<<< HEAD
-  int t[MAX];//pos 0=nb trans; {etat1;etiquette;etat2}
-  ensemble i;//même que q
-  ensemble f;//même que q
-=======
-  ensemble t[MAX][MAX]; 
+  ensemble t[MAX][MAX];
   ensemble i;     //même que q
   ensemble f;    //même que q
->>>>>>> 75ea209c1084bb9edbef5a8543f317eed2ffe20d
 }Automate;
 
 typedef struct{
