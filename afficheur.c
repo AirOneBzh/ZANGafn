@@ -75,7 +75,6 @@ int aff_aut_d(Automate_d a){
   for(i=1; i<=a.q_d[0].ens[0]; i++){
     aff_ens(a.q_d[i]);
   }
-<<<<<<< HEAD
   fprintf(stdout, "A =\n");
 
 
@@ -85,12 +84,11 @@ int aff_aut_d(Automate_d a){
     alph[i]=alph[i+1];
     i++;
   }
-<<<<<<< HEAD
+
 
   fprintf(stdout, "%s \n", a.a);
-=======
+
   fprintf(stdout, "%s \n",alph);
->>>>>>> 75ea209c1084bb9edbef5a8543f317eed2ffe20d
   fprintf(stdout, "T =\n");
   aff_trans_d(a.t_d,a.q_d);
   fprintf(stdout, "\nI=\n");

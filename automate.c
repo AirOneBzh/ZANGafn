@@ -117,7 +117,19 @@ int init_aut(Automate *A){
   return 1;
 }
 
-int tr_finaux(ensemble f,ensemble q_d,ensemble f_d){
+int tr_finaux(ensemble f,ensemble q_d[],ensemble *f_d){
+  int fin[MAX];
+  etoi(f, fin);
+  for(i=1; i<=fin[0];i++ ){
+    for(j=1; j<=q_d[0].ens[0]; j++){
+      etoi(q_d[j], fin_d);
+      for(k=1; k<=fin_d[0];k++){
+        if(fin_d[k]==fin[k]){
+          aj_etat(f_d, ens_d(q_d[j]));
+        }
+      }
+    }
+  }
   return 1;
 }
 
