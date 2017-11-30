@@ -104,17 +104,13 @@ int itoe(int r[],ensemble e){
 //return trans d'un ens par etiquette sur afn
 // retourne nb de transitions
 int trans(ensemble t[][MAX], int etat_dep, char etiq,int etat_arr[]){
-  int i,c,tmp[MAX];
-  for(c=1;c<=t[0][0].ens[1];c++){
-    if(t[0][c].ens[0]==etiq){
+  int i;
+  for(i=1;i<=t[0][0].ens[1];i++){
+    if(t[0][i].ens[0]==etiq){
       break;
     }
   }
-  etoi(t[etat_dep][c],tmp);
-  for(i=1;i<=tmp[0];i++){
-    etat_arr[etat_arr[0]]=tmp[i];
-    etat_arr[0]++;
-  }
+  etoi(t[etat_dep][i],etat_arr);
   return 1;
 }
 
@@ -122,14 +118,12 @@ int est_trans(ensemble t[][MAX],int etat_dep,char etiq,int etat_arr){
   int i;
 
   for(i=1;i<=t[0][0].ens[1];i++){
-    printf("t[i%c:",t[0][i].ens[0]);
     if(t[0][i].ens[0]==etiq){
       break;
     }
   }
-  printf("dep%d i%de%c arr%d\n",etat_dep,i,etiq,etat_arr);
+
   if(est_etat(t[etat_dep][i],etat_arr)){
-    printf("arr%d\n",etat_arr);
     return 1;
   }
   return 0;
@@ -153,12 +147,13 @@ int ens_d(ensemble e,ensemble q_d[],int t_d[][MAX]){
   int i;
   for(i=1;i<=q_d[0].ens[0];i++){
     if(eg_ens(q_d[i],e)){
+      printf("ii%d\n",i);
       return i;
     }
   }
   q_d[0].ens[0]++;
+  printf("ens_d qd0%d\n",q_d[0].ens[0]);
   q_d[q_d[0].ens[0]]=e;
-
   t_d[q_d[0].ens[0]][0]=q_d[0].ens[0];
   return q_d[0].ens[0];
 }

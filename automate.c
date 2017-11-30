@@ -46,6 +46,7 @@ int A_fichier(Automate *A){
   }
   A->q.ens[0]=0;
   A->a[0]=0;
+  A->t[0][0].ens[1]=0;
   do{
     fgets(ligne[i],50,f);
     if(ligne[i][0]=='E' && ligne[i][1]=='O' && ligne[i][2]=='F'){
@@ -53,18 +54,17 @@ int A_fichier(Automate *A){
     }
     fgets(donnee,50,f);
     sscanf(ligne[i],"%c%d:",&c,&n);
-    A->t[0][0].ens[0]=A->t[0][0].ens[1]=0;
+
     for(j=0;j<n;j++){
       if(c=='Q'){
+        A->t[0][0].ens[0]=n;
         sscanf(donnee,"%d ",&etat1);
         aj_etat(&A->q,etat1);
         donnee[j*2]=' ';
-        A->t[0][0].ens[0]++;
       }
       if(c=='a'){
         sscanf(donnee,"%c",&etiq);
         A->a[0]++;
-
         A->a[A->a[0]-0]=etiq;   // -0 pour convertir code ascii en int
         A->t[0][A->a[0]-0].ens[0]=etiq;
         for(k=0;k<n-j;k++){
@@ -75,7 +75,6 @@ int A_fichier(Automate *A){
         A->t[0][0].ens[1]=A->a[0];
         sscanf(donnee,"%d%c%d ",&etat1,&etiq,&etat2);
         aj_trans(A->t,etat1,etiq,etat2);
-        printf("1 %d e %c 2 %d\n",etat1,etiq,etat2);
         donnee[j*4]=donnee[j*4+1]=donnee[j*4+2]=' ';
       }
 
@@ -94,12 +93,12 @@ int A_fichier(Automate *A){
     i++;
   }
   while(1);
-
-  i=0;
+  i=1;
   while(A->a[i]!='\0'){
     A->t[0][i].ens[0]=A->a[i];
     i++;
   }
+  A->t[0][0].ens[1]=A->a[0];
   fclose(f);
   return 1;
 }
@@ -138,20 +137,18 @@ int tr_finaux(ensemble f,ensemble q_d[],ensemble *f_d){
 int res_trans_d(Automate A,int t_d[][MAX], ensemble q_d[]){
   int i,j,k,dep[10],arr[10];
   ensemble e;
+
   for(i=1;i<=q_d[0].ens[0];i++){
+    printf("\nq_d0 %d A0 %d \n",q_d[0].ens[0],A.a[0]);
+    aff_ens(q_d[2]);
     for(j=1;j<=A.a[0];j++){
       etoi(q_d[t_d[i][0]],dep);
       arr[0]=0;
       for(k=1;k<=dep[0];k++){
         trans(A.t,dep[k],A.a[j],arr);
       }
-      for (k=1;k<=arr[0];k++){
-        printf("arr[k] %d\n",arr[k]);
-      }
       itoe(arr,e);
-      aff_ens(e);
       t_d[i][j]=ens_d(e,q_d,t_d);
-
     }
   }
   return 1;

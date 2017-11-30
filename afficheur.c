@@ -19,7 +19,6 @@ void aff_ens(ensemble e){
 
 int aff_trans(ensemble t[][MAX]){
   int i,j,k,arr[MAX];
-  fprintf(stdout,"{ ");
   for(i=1;i<=t[0][0].ens[0];i++){      //.ens[0] = nb etats dep
     for(j=1;j<=t[0][0].ens[1];j++){   // .ens[1] = nb alphabet
       etoi(t[i][j],arr);
