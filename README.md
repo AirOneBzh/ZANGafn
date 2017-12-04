@@ -1,11 +1,27 @@
 <!-- ZANGafn-->
+# Programme de determinisation d'un afn
+## Déroulement
+### Initialisation
+Depuis le module automate ```init_aut```  
+Plusieurs choix : 1. **Par défaut** 2. **Depuis un fichier**  
+### Affichage de l'afn
+Présente l'automate devant être déterminiser avec ```aff_aut``` dans le module afficheur qui utilise ```aff_ens``` afin d'afficher les éléments depuis une structure __ensemble__ défini dans le module ensemble
+### Determinisation
+Dans le module automate ```det_aut``` copie l'automate en effectuant les changements afin d'obtenir un automate deterministe, pour cela on utilise également ```res_trans_d``` qui résout le delta des transitions de l'automate déterministe.  
+#### Référencement des ensembles
+Dans l'automate déterministe les transitions peuvent se diriger plusieurs fois vers un même ensemble d'états, c'est pourquoi ne seront noté que les indices pointant vers l'ensemble voulu à la place de ceux-ci.
 
-analyser un mot avec un automate/deter un automate/chq module utilise les autres  
-
-note \_d est destiné à l'automate deterministe
-# Éléments du programme
-## Module ensemble
-### Fonctions
+### Affichage de l'afd
+## Structures
+ensemble  
+Automate  
+  transitions  
+Automate_d  
+  référencement d'ensemble  
+  transitions  
+## Éléments du programme
+### Module ensemble
+#### Fonctions
 
 ##### eg_ens
 ```
@@ -47,7 +63,7 @@ int aj_etat(ensemble *e,int n)
 int supp_etat(ensemble *e,int n)
 ```
 * 1 si un état supprimé
-* 0 sinon _(l'état pouvait être absent)_
+* 0 sinon __(l'état pouvait être absent)__
 
 ##### sep_ens_init
 ```
@@ -62,7 +78,7 @@ int trans(int t[],
           char c,  
           int ens_arr[])  
 ```
-* 1 si un état est renvoyé _(ens_arr)_
+* 1 si un état est renvoyé __(ens_arr)__
 * Modifie tableau ens_arr et insère etat d'arrivée des transitions depuis etat_dep avec étiquette c
 * Insère seulement à la suite de la table afin d'être conforme aux chemins d'un AFN
 
@@ -83,8 +99,6 @@ int aj_trans(int *t,
              int etat_arr)  
 ```
 * 1 si la transition a pu être ajoutée
-
-
 
 ##### trans_d
 ```
@@ -119,7 +133,7 @@ int aj_trans_d(ensemble *td[],
 
 
 
-## Structure
+### Structure
 ##### ensemble
 ```
 typedef struct {  
@@ -127,8 +141,8 @@ typedef struct {
 }
 ```
 
-# Module automate
-## Fonctions
+## Module automate
+### Fonctions
 
 ##### A_defaut
 ```
@@ -153,9 +167,9 @@ int A_saisie(Automate *A)
 int init_aut(Automate *A)
 ```
 * Propose à l'utilisateur le choix de la configuration de l'automate
-1. A_defaut _automate par défaut_
-1. A_fichier _automate lu dans le fichier *loader*_
-1. A_saisie _si l'envie vous prend de saisir l'automate en répondant aux questions_
+1. A_defaut __automate par défaut__
+1. A_fichier __automate lu dans le fichier *loader*__
+1. A_saisie __si l'envie vous prend de saisir l'automate en répondant aux questions__
 
 ##### det_aut  
 ```
@@ -175,7 +189,7 @@ int rec_mot_d(Automate_d A,char mot [])
 ```
 * 1 si le mot est reconnu par l'automate déterministe
 
-## Structures
+### Structures
 
 ##### Automate
 ```
@@ -201,7 +215,7 @@ typedef struct{
 
 
 
-# Prog afficheur
+## Prog afficheur
 à changer pour en faire un module  
 et faire un menu de choix pour manipuler l'automate
 ##### aff_ens

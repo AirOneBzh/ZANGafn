@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "automate.h"
+#include "afficheur.h"
 
 
 //manip d'un ensemble
@@ -8,17 +9,27 @@
 int eg_ens(ensemble ens1,ensemble ens2){
   int i,j;
   j=0;
+  aff_ens(ens1);
+  printf(" %d et %d ",ens1.ens[0],ens2.ens[0]);
+  aff_ens(ens2);
+
   if(ens1.ens[0]==ens2.ens[0]){
     for(i=0;j<ens1.ens[0];i++){
-      if (ens1.ens[i]==1){
+      if(ens1.ens[i]==1 && ens2.ens[i]==1){
         j++;
       }
-    }
-    if(j==ens1.ens[0]){
-      return 1;
+      if(ens1.ens[i]!=ens2.ens[i]){
+        printf("  diff\n");
+        return 0;
+      }
     }
   }
-  return 0;
+  else{
+    printf("  diff\n");
+    return 0;
+  }
+  printf("  eg\n");
+  return 1;
 }
 
 //verif si ens e est dans liste ensembles q
@@ -72,7 +83,8 @@ int supp_etat(ensemble *e,int n){
 }
 
 int etoi(ensemble e,int r[]){
-  int i;
+  int i,ro;
+  ro=r[0];
   r[0]=0;
   for(i=1;r[0]<e.ens[0];i++){
     if(e.ens[i]==1){
@@ -80,18 +92,26 @@ int etoi(ensemble e,int r[]){
       r[r[0]]=i;
     }
   }
+
+  if(e.ens[0]==0){ 
+    for(i=0;i<=ro;i++){
+      r[i]=0;
+    }
+  }
   return 1;
 }
 
-int itoe(int r[],ensemble e){
+int itoe(int r[],ensemble *e){
   int i;
-  e.ens[0]=0;
-  for(i=1;e.ens[0]<r[0];i++){
-    if(r[e.ens[0]+1]==i){
-      e.ens[0]++;
-      e.ens[e.ens[0]]=1;
+  e->ens[0]=0;
+
+  for(i=1;e->ens[0]<r[0];i++){
+    if(r[e->ens[0]+1]==i){
+      e->ens[0]++;
+      e->ens[e->ens[0]]=1;
     }
   }
+  printf("itoe %d\n",r[0]);
   return 1;
 }
 
@@ -104,13 +124,16 @@ int itoe(int r[],ensemble e){
 //return trans d'un ens par etiquette sur afn
 // retourne nb de transitions
 int trans(ensemble t[][MAX], int etat_dep, char etiq,int etat_arr[]){
-  int i;
+  int i,tmp[MAX];
   for(i=1;i<=t[0][0].ens[1];i++){
     if(t[0][i].ens[0]==etiq){
       break;
     }
   }
-  etoi(t[etat_dep][i],etat_arr);
+  etoi(t[etat_dep][i],tmp);
+  for(i=0;i<=tmp[0];i++){
+    etat_arr[i]=tmp[i];
+  }
   return 1;
 }
 
@@ -139,20 +162,26 @@ int aj_trans(ensemble t[][MAX],int etat_dep,char etiq,int etat_arr){
       break;
     }
   }
+  printf("ed %d i %d t[]%d ",etat_dep,i,t[etat_dep][i].ens[0]);
+  aff_ens(t[etat_dep][i]);
   aj_etat(&t[etat_dep][i],etat_arr);
+  aff_ens(t[etat_dep][i]);
+  printf(" %d \n",t[etat_dep][i].ens[0]);
   return 1;
 }
 
 int ens_d(ensemble e,ensemble q_d[],int t_d[][MAX]){
   int i;
+  aff_ens(e);
+  printf("e%d\n",e.ens[0]);
   for(i=1;i<=q_d[0].ens[0];i++){
     if(eg_ens(q_d[i],e)){
-      printf("ii%d\n",i);
+      printf("present %d\n",i);
       return i;
     }
   }
   q_d[0].ens[0]++;
-  printf("ens_d qd0%d\n",q_d[0].ens[0]);
+  printf("creer %d\n",q_d[0].ens[0]);
   q_d[q_d[0].ens[0]]=e;
   t_d[q_d[0].ens[0]][0]=q_d[0].ens[0];
   return q_d[0].ens[0];

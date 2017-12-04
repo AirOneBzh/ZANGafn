@@ -70,10 +70,10 @@ int aff_aut_d(Automate_d a){
   int i;
   char alph[MAX];
   strcpy(a.a,alph);
-  printf("%c",alph[1]);
   fprintf(stdout, "\n\nQ = \n");
   for(i=1; i<=a.q_d[0].ens[0]; i++){
     aff_ens(a.q_d[i]);
+    fprintf(stdout," : %d\n",i);
   }
 
   fprintf(stdout, "\nA = { ");

@@ -139,17 +139,22 @@ int res_trans_d(Automate A,int t_d[][MAX], ensemble q_d[]){
   ensemble e;
 
   for(i=1;i<=q_d[0].ens[0];i++){
-    printf("\nq_d0 %d A0 %d \n",q_d[0].ens[0],A.a[0]);
-    aff_ens(q_d[2]);
     for(j=1;j<=A.a[0];j++){
       etoi(q_d[t_d[i][0]],dep);
       arr[0]=0;
       for(k=1;k<=dep[0];k++){
         trans(A.t,dep[k],A.a[j],arr);
       }
-      itoe(arr,e);
+
+      itoe(arr,&e);
       t_d[i][j]=ens_d(e,q_d,t_d);
     }
+  }
+  for(i=0;i<4;i++){
+    for(j=0;j<4;j++){
+      printf("%d ",t_d[i][j]);
+    }
+    printf("\n");
   }
   return 1;
 }
@@ -165,7 +170,6 @@ int det_aut(Automate A,Automate_d *Ad){
 
   res_trans_d(A,Ad->t_d,Ad->q_d);
   strcpy(A.a,Ad->a);
-  printf("%s",Ad->a);
   tr_finaux(A.f,Ad->q_d,&Ad->f_d);   //trouver finaux
   return 1;
 }
