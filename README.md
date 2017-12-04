@@ -1,5 +1,5 @@
 <!-- ZANGafn-->
-# Programme de determinisation d'un afn
+# Déterminisation automatisé d'un AFN
 ## Déroulement
 ### Initialisation
 Depuis le module automate ```init_aut```  

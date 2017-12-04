@@ -134,6 +134,15 @@ int tr_finaux(ensemble f,ensemble q_d[],ensemble *f_d){
   return 1;
 }
 
+int zeros(int z[],ensemble *e){
+  int i;
+  for(i=0;i<10;i++){
+    z[i]=0;
+    e->ens[i]=0;
+  }
+  return 1;
+}
+
 int res_trans_d(Automate A,int t_d[][MAX], ensemble q_d[]){
   int i,j,k,dep[10],arr[10];
   ensemble e;
@@ -141,7 +150,7 @@ int res_trans_d(Automate A,int t_d[][MAX], ensemble q_d[]){
   for(i=1;i<=q_d[0].ens[0];i++){
     for(j=1;j<=A.a[0];j++){
       etoi(q_d[t_d[i][0]],dep);
-      arr[0]=0;
+      zeros(arr,&e);
       for(k=1;k<=dep[0];k++){
         trans(A.t,dep[k],A.a[j],arr);
       }

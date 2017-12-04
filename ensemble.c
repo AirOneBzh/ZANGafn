@@ -92,12 +92,17 @@ int etoi(ensemble e,int r[]){
       r[r[0]]=i;
     }
   }
-
-  if(e.ens[0]==0){ 
+  if(e.ens[0]==0){
     for(i=0;i<=ro;i++){
       r[i]=0;
     }
   }
+  printf("etoi ");
+  for(i=0;i<=4;i++){
+    printf("%d",e.ens[i]);
+  }
+
+  printf("\n");
   return 1;
 }
 
@@ -111,7 +116,6 @@ int itoe(int r[],ensemble *e){
       e->ens[e->ens[0]]=1;
     }
   }
-  printf("itoe %d\n",r[0]);
   return 1;
 }
 
@@ -131,9 +135,14 @@ int trans(ensemble t[][MAX], int etat_dep, char etiq,int etat_arr[]){
     }
   }
   etoi(t[etat_dep][i],tmp);
+  int ea=etat_arr[0];
+  int tmp0=tmp[0];
+  printf("tmp %d   ",tmp[2]);
   for(i=0;i<=tmp[0];i++){
     etat_arr[i]=tmp[i];
+    tmp[i]=0;
   }
+  etat_arr[0]=ea+tmp0;
   return 1;
 }
 
