@@ -11,5 +11,6 @@ int aj_etat(ensemble *e,int n);
 int aj_trans(ensemble t[][MAX],int etat_dep,char etiq,int etat_arr);
 int etoi(ensemble e,int r[]);
 int itoe(int r[],ensemble *e);
-int trans(ensemble t[][MAX], int etat_dep, char etiq,int etat_arr[]);
+void vider_ens(ensemble *e);
+int trans(ensemble t[][MAX], int etat_dep, char etiq,ensemble *arr);
 int ens_d(ensemble e,ensemble q_d[],int t_d[][MAX]);

@@ -7,18 +7,41 @@ Plusieurs choix : 1. **Par défaut** 2. **Depuis un fichier**
 ### Affichage de l'afn
 Présente l'automate devant être déterminiser avec ```aff_aut``` dans le module afficheur qui utilise ```aff_ens``` afin d'afficher les éléments depuis une structure __ensemble__ défini dans le module ensemble
 ### Determinisation
-Dans le module automate ```det_aut``` copie l'automate en effectuant les changements afin d'obtenir un automate deterministe, pour cela on utilise également ```res_trans_d``` qui résout le delta des transitions de l'automate déterministe.  
+Dans le module automate ```det_aut``` copie l'automate en effectuant les changements afin d'obtenir un automate deterministe, pour cela on utilise également ```res_trans_d``` qui résout le delta des transitions de l'automate déterministe et ```tr_finaux``` qui inscrit en tant qu'ensemble final ceux contenant un état final de l'afn.
 #### Référencement des ensembles
 Dans l'automate déterministe les transitions peuvent se diriger plusieurs fois vers un même ensemble d'états, c'est pourquoi ne seront noté que les indices pointant vers l'ensemble voulu à la place de ceux-ci.
 
 ### Affichage de l'afd
-## Structures
-ensemble  
-Automate  
-  transitions  
-Automate_d  
-  référencement d'ensemble  
-  transitions  
+### ensemble
+```
+typedef struct {  
+  int ens[50];  
+}
+```  
+### Automate
+```
+typedef struct{  
+  ensemble q;  
+  char a[50];  
+  int t[50];  
+  ensemble i;  
+  ensemble f;  
+}Automate;  
+```
+
+### Automate_d  
+```
+typedef struct{  
+  ensemble qd[50];  
+  char a[50];  
+  ensemble td[50];  
+  ensemble id;  
+  ensemble fd[50];  
+}Automate_d;  
+```  
+référencement d'ensemble  
+transitions
+![transitions.png]  
 ## Éléments du programme
 ### Module ensemble
 #### Fonctions
@@ -132,15 +155,6 @@ int aj_trans_d(ensemble *td[],
  -->
 
 
-
-### Structure
-##### ensemble
-```
-typedef struct {  
-  int ens[50];  
-}
-```
-
 ## Module automate
 ### Fonctions
 
@@ -171,6 +185,10 @@ int init_aut(Automate *A)
 1. A_fichier __automate lu dans le fichier *loader*__
 1. A_saisie __si l'envie vous prend de saisir l'automate en répondant aux questions__
 
+##### res_trans_d
+
+##### tr_finaux
+
 ##### det_aut  
 ```
 int det_aut(Automate A,Automate *B)
@@ -182,37 +200,6 @@ int det_aut(Automate A,Automate *B)
 int rec_mot(Automate A,char mot[])
 ```
 * 1 si le mot est reconnu par l'automate
-
-##### rec_mot_d
-```
-int rec_mot_d(Automate_d A,char mot [])
-```
-* 1 si le mot est reconnu par l'automate déterministe
-
-### Structures
-
-##### Automate
-```
-typedef struct{  
-  ensemble q;  
-  char a[50];  
-  int t[50];  
-  ensemble i;  
-  ensemble f;  
-}Automate;  
-```
-
-##### Automate_d  
-```
-typedef struct{  
-  ensemble qd[50];  
-  char a[50];  
-  ensemble td[50];  
-  ensemble id;  
-  ensemble fd[50];  
-}Automate_d;  
-```
-
 
 
 ## Prog afficheur
