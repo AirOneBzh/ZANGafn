@@ -88,18 +88,6 @@ int etoi(ensemble e,int r[]){
   return 1;
 }
 
-int itoe(int r[],ensemble *e){
-  int i;
-  e->ens[0]=0;
-
-  for(i=1;e->ens[0]<r[0];i++){
-    if(r[e->ens[0]+1]==i){
-      e->ens[0]++;
-      e->ens[e->ens[0]]=1;
-    }
-  }
-  return 1;
-}
 
 //
 //
@@ -107,7 +95,7 @@ int itoe(int r[],ensemble *e){
 //
 //
 
-//return trans d'un ens par etiquette sur afn
+//return & d'un ens par etiquette sur afn
 // retourne nb de transitions
 int trans(ensemble t[][MAX], int etat_dep, char etiq,ensemble *arr){
   int i,tmp[MAX];

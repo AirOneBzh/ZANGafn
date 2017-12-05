@@ -12,225 +12,133 @@ Dans le module automate ```det_aut``` copie l'automate en effectuant les changem
 Dans l'automate déterministe les transitions peuvent se diriger plusieurs fois vers un même ensemble d'états, c'est pourquoi ne seront noté que les indices pointant vers l'ensemble voulu à la place de ceux-ci.
 
 ### Affichage de l'afd
-### ensemble
+## Structures
 ```
 typedef struct {  
   int ens[50];  
-}
-```  
-### Automate
-```
-typedef struct{  
+} ensemble;
+
+
+
+typedef struct {  
   ensemble q;  
   char a[50];  
   int t[50];  
   ensemble i;  
   ensemble f;  
-}Automate;  
-```
+} Automate;  
 
-### Automate_d  
-```
-typedef struct{  
+typedef struct {  
   ensemble qd[50];  
   char a[50];  
   ensemble td[50];  
   ensemble id;  
   ensemble fd[50];  
-}Automate_d;  
+} Automate_d;  
 ```  
-référencement d'ensemble  
-transitions
-![transitions.png]  
+Référencement d'ensemble  Un ensemble est transformé en entier
+Tableau de transitions
+|alphabet| na|  a  |  b  |
+| -----  |---|:---:|:---:|
+|        | 1 | 1,2 |  1  |  
+|   dep  | 2 |     |  3  |
+|        | 3 |  3  |  3  |
+|        |   |    arr    |
 ## Éléments du programme
 ### Module ensemble
-#### Fonctions
 
-##### eg_ens
 ```
 int eg_ens(ensemble ens1,ensemble ens2)
-```
+// 1 si ens1 = ens2  
 
-* 1 si ens1 = ens2  
+int est_ens(ensemble q[],ensemble e)   
+// 1 si e appartient à la liste d'ensemble q  
 
-##### est_ens
+int est_etat(ensemble e,int n)        
+// 1 si l'état n fait partie de l'ensemble e  
 
-```
-int est_ens(ensemble q[],ensemble e)
-```
+int aj_ens(ensemble q[],ensemble e)     
+// 1 si l'ensemble est ajouté la liste  
 
-* 1 si e appartient à la liste d'ensemble q
+int aj_etat(ensemble *e,int n)         
+// 1 si l'état est ajouté à l'ensemble  
 
-##### est_etat
-```
-int est_etat(ensemble e,int n)
-```
+void vider_ens(ensemble *e)  
+// Vide l'ensemble des données résiduelles précédentes
 
-* 1 si l'état n fait partie de l'ensemble e
-
-##### aj_ens
-```
-int aj_ens(ensemble q[],ensemble e)
-```   
-* 1 si l'ensemble est ajouté la liste
+int etoi(ensemble e,int r[])
+// Transforme un ensemble en une liste d'entiers
 
 
-##### aj_etat
-```
-int aj_etat(ensemble *e,int n)
-```  
-* 1 si l'état est ajouté à l'ensemble
-
-##### supp_etat
-```
-int supp_etat(ensemble *e,int n)
-```
-* 1 si un état supprimé
-* 0 sinon __(l'état pouvait être absent)__
-
-##### sep_ens_init
-```
-int sep_ens_init(ensemble i, int r[])
-```
-* Insère dans r les états initiaux convertis sous forme d'entier
-
-##### trans
-```
 int trans(int t[],  
           int ens_dep,  
           char c,  
           int ens_arr[])  
-```
-* 1 si un état est renvoyé __(ens_arr)__
-* Modifie tableau ens_arr et insère etat d'arrivée des transitions depuis etat_dep avec étiquette c
-* Insère seulement à la suite de la table afin d'être conforme aux chemins d'un AFN
 
-##### est_trans
-```
+// * 1 si un état est renvoyé __(ens_arr)__
+// * Modifie tableau ens_arr et insère etat d'arrivée des transitions  
+// depuis etat_dep avec étiquette c
+// * Insère seulement à la suite de la table afin d'être conforme  
+// aux chemins d'un AFN
+
 int est_trans(int t[],  
               int etat_dep,  
               char etiq,  
               int etat_arr)  
-```
-* 1 si la transition existe
 
-##### aj_trans
-```
+//* 1 si la transition existe
+
 int aj_trans(int *t,  
              int etat_dep,  
              char etiq,  
              int etat_arr)  
 ```
-* 1 si la transition a pu être ajoutée
 
-##### trans_d
-```
-ensemble trans_d(Automate_d A,  
-                 ensemble ens_dep,  
-                 char etiq)  
-```
+### Module automate
 
-##### est_trans_d
-```
-int est_trans_d(ensemble td[],  
-                ensemble ens_dep,  
-                char etiq,  
-                ensemble ens_arr)  
-```
-
-
-##### aj_trans_d
-```
-int aj_trans_d(ensemble *td[],  
-               ensemble ens_dep,  
-               char etiq,  
-               ensemble ens_arr)  
-```
-
-
-<!--
-#####
-``````
-
- -->
-
-
-## Module automate
-### Fonctions
-
-##### A_defaut
 ```
 void A_defaut(Automate *A)
-```
-* Insère l'automate de test par défaut dans A
-
-##### A_fichier
-```
 int A_fichier(Automate *A)
-```
-* Insère l'automate configuré dans le fichier loader dans A
+// Insère l'automate configuré en dur dans le code
+// ou dans le fichier loader dans A  
 
-##### A_saisie
-```
-int A_saisie(Automate *A)
-```
-* Demande information par information les données à insérer dans l'automate A
+// pour simplifier l'utilisation on charge directement le fichier
+int init_aut(Automate *A)  
+// Propose à l'utilisateur le choix de la configuration de l'automate  
+// 1. A_defaut __automate par défaut__  
+// 2. A_fichier __automate lu dans le fichier *loader*__  
 
-##### init_aut
-```
-int init_aut(Automate *A)
-```
-* Propose à l'utilisateur le choix de la configuration de l'automate
-1. A_defaut __automate par défaut__
-1. A_fichier __automate lu dans le fichier *loader*__
-1. A_saisie __si l'envie vous prend de saisir l'automate en répondant aux questions__
+int tr_finaux(ensemble f,ensemble q_d[],ensemble *f_d)  
+// Trouve parmi les ensembles de l'automate déterministe ceux qui sont finaux
 
-##### res_trans_d
+int res_trans_d(Automate A,int t_d[][MAX], ensemble q_d[])  
+// résout le tableau delta des transitions de l'automate  
 
-##### tr_finaux
+int det_aut(Automate A,Automate *B)  
+// Modifie l'automate B pour qu'il soit l'automate A determinisé
 
-##### det_aut  
+int rec_mot(Automate A,char mot[])  
+// Ecrit reconnu si <mot> est reconnu par l'automate A
 ```
-int det_aut(Automate A,Automate *B)
-```
-* Modifie l'automate B pour qu'il soit l'automate A determinisé
 
-##### rec_mot
-```
-int rec_mot(Automate A,char mot[])
-```
-* 1 si le mot est reconnu par l'automate
+### Prog afficheur
 
-
-## Prog afficheur
-à changer pour en faire un module  
-et faire un menu de choix pour manipuler l'automate
-##### aff_ens
 ```
-void aff_ens(ensemble e)
+void aff_ens(ensemble e)  
+// Affiche un ensemble d'états e  
+
+int aff_trans(int t[])  
+// Affiche une liste de transitions d'un AFN  
+
+int aff_trans_d(ensemble td[])  
+// Affiche un tableau de transition entre ensembles d'un AFD
+
+int aff_aut(Automate A)  
+// Affiche un AFN  
+
+int aff_aut_d(Automate_d a)  
+// Affiche un AFD
+
+int main()
+// Déclare les automates les initialise, les déterminise et les affiche
 ```  
-* Affiche un ensemble d'états e
-
-##### aff_trans
-```
-int aff_trans(int t[])
-```
-* Affiche une liste de transitions d'un AFN
-
-##### aff_aut
-```
-int aff_aut(Automate A)
-```  
-* Affiche un AFN
-
-##### aff_trans_d
-```
-int aff_trans_d(ensemble td[])
-```  
-* Affiche un tableau de transition entre ensembles d'un AFD
-
-##### aff_aut_d
-```
-int aff_aut_d(Automate_d a)
-```  
-* Affiche un AFD
