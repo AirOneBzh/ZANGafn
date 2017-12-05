@@ -107,7 +107,7 @@ int main (){
   aff_aut(a);
   det_aut(a,&ad);
   aff_aut_d(ad);
-
+  // rec_mot(a,"abaababb");
   return 1;
 }
 
