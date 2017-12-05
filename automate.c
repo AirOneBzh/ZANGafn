@@ -183,10 +183,10 @@ int rec_mot(Automate A,char mot[]){
   }
   for(j=1;j<=etats[i][0];j++){
     if(est_etat(A.f,etats[i][j])){
-      fprintf(stdout,"Reconnu");
+      fprintf(stdout,"Reconnu %s\n",mot);
       return 1;
     }
   }
-  fprintf(stdout,"Non Reconnu");
+  fprintf(stdout,"Non Reconnu %s\n",mot);
   return 0;
 }
