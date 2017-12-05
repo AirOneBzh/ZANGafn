@@ -10,6 +10,7 @@ f1:
 3
 EOF
 
+
 Qn:     avec n le nombre d'états
 q1 q2 q3      la liste des états
 an:     ---------------- d'éléments dans l'alphabet

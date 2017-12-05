@@ -103,11 +103,14 @@ int aff_aut_d(Automate_d a){
 int main (){
   Automate a;
   Automate_d ad;
+  char mot[20];
   init_aut(&a);
   aff_aut(a);
   det_aut(a,&ad);
   aff_aut_d(ad);
-  rec_mot(a,"abaababb");
+  fprintf(stdout,"Votre mot à reconnaitre: ");
+  fscanf(stdin,"%s",mot);
+  rec_mot(a,mot);
   return 1;
 }
 
